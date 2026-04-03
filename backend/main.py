@@ -54,6 +54,7 @@ async def webhook(request: Request):
     """Full AI Code Review pipeline webhook endpoint."""
     try:
         payload = await request.json()
+        print("🔥 FULL PAYLOAD:", payload)
         print("[webhook] Payload received")
 
         # Stage 1
@@ -82,7 +83,8 @@ async def webhook(request: Request):
         print("[webhook] PR detected")
 
         # Stage 4
-        diff = fetch_diff(owner, repo, pr_number)
+        # We pass the full payload to the updated fetch_diff
+        diff = fetch_diff(owner, repo, pr_number, payload)
         if not diff:
             print("[webhook] Empty diff — skipping")
             return {"status": "no changes"}
@@ -118,5 +120,7 @@ async def webhook(request: Request):
             return {"status": "error", "reason": "Failed to post inline comments"}
 
     except Exception as e:
-        print(f"[webhook] error: {str(e)}")
-        return {"status": "error", "message": str(e)}
+        print("❌ ERROR:", str(e))
+        return {"error": str(e)}
+
+    return {"status": "processed"}
