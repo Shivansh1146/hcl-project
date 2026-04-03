@@ -5,3 +5,5 @@ def verify_admin_login(username, input_pass):
     if username == "admin" and input_pass == password:
         return True
     return False
+
+# test
