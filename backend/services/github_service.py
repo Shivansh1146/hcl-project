@@ -30,14 +30,11 @@ class GitHubService:
             logger.error(f"Failed to extract PR data from payload: {str(e)}")
             raise ValueError("Invalid GitHub webhook payload format") from e
 
-    def fetch_diff(self, owner: str, repo: str, pr_number: int, payload: Dict[str, Any] = None) -> Optional[str]:
+    def fetch_diff(self, owner: str, repo: str, pr_number: int) -> Optional[str]:
         """Fetches the code diff of a specific pull request securely."""
         logger.info(f"Fetching diff for {owner}/{repo} PR #{pr_number}")
 
-        if payload and "pull_request" in payload and "diff_url" in payload["pull_request"]:
-            diff_url = payload["pull_request"]["diff_url"]
-        else:
-            diff_url = f"https://github.com/{owner}/{repo}/pull/{pr_number}.diff"
+        diff_url = f"https://github.com/{owner}/{repo}/pull/{pr_number}.diff"
 
         headers = self.headers.copy()
         # Strictly accept native diff
@@ -77,6 +74,8 @@ class GitHubService:
                 headers=self.headers,
                 json={"body": comment}
             )
+            print("GITHUB POST STATUS:", response.status_code)
+            print("GITHUB POST RESPONSE:", response.text)
             response.raise_for_status()
             logger.info(f"Successfully posted comment to PR #{pr_number}")
             return True
@@ -110,6 +109,8 @@ class GitHubService:
                 headers=self.headers,
                 json=payload
             )
+            print("GITHUB POST STATUS:", response.status_code)
+            print("GITHUB POST RESPONSE:", response.text)
             response.raise_for_status()
             logger.info(f"Successfully posted inline comment to PR #{pr_number}")
             return True
