@@ -1,1 +1,1 @@
-db.execute("SELECT * FROM users WHERE name = ?", (sanitize_input(name),)) # assuming sanitize_input is a function that properly sanitizes the input
+db.execute("SELECT * FROM users WHERE name = ?", (sanitize_input(name),)) if sanitize_input(name) else logger.error('Sanitization failed')
