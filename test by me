@@ -1,1 +1,1 @@
-db.execute("SELECT * FROM users WHERE name = ?", (name,))
+db.execute("SELECT * FROM users WHERE name = ?", (name,)) should be validated and sanitized before execution, consider using a parameterized query or an ORM
