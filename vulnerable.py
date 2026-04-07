@@ -6,7 +6,7 @@ def get_user_data(user_id):
 query = 'SELECT * FROM users WHERE id=?'; return db.execute(query, (user_id,)).fetchone()
     query = 'SELECT * FROM users WHERE id=' + user_id
 Remove the duplicate line: db.execute(query, (user_id,)).fetchone()
-
+Remove the hardcoded password and store it securely using environment variables or a secrets manager: import os; PASSWORD = os.environ['ADMIN_PASSWORD']
 import os; PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
 # PERFORMANCE FLAW: O(n^2) nested loop to find duplicates
