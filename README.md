@@ -11,8 +11,7 @@ A production-grade, asynchronous code review agent that intercepts GitHub Pull R
 | Backend | Python 3.11 + FastAPI |
 | AI Engine | Groq API (`llama-3.3-70b-versatile`) — Free tier |
 | Integration | GitHub REST API v3 (Webhooks + Inline Comments) |
-| Anti-Hallucination | Custom `validator.py` — variable name cross-checker |
-| Noise Filter | Custom `filter_service.py` — heuristic scoring engine |
+| Persistence | SQLite (`reviews.db`) — stores history across restarts |
 | Dashboard | Glassmorphism UI + **Decision Intelligence** (Actionable Guidance) |
 | Tunneling | `localtunnel` (development) |
 
@@ -244,11 +243,12 @@ def main_worker():
 HCL Project/
 ├── backend/
 │   ├── main.py                  # FastAPI app — webhook pipeline + dashboard routes
-│   ├── stats_store.py           # In-memory telemetry store
+│   ├── stats_store.py           # Persistent SQLite telemetry engine
+│   ├── reviews.db               # SQLite database (Git ignored)
 │   ├── requirements.txt
 │   ├── .env                     # API keys — never commit
 │   ├── static/
-│   │   └── index.html           # Live dashboard (Glassmorphism UI)
+│   │   └── index.html           # Live dashboard (Refined Glassmorphism UI)
 │   ├── services/
 │   │   ├── ai_service.py        # Groq LLaMA integration + chunking
 │   │   ├── github_service.py    # GitHub API — diff fetch + comment post
