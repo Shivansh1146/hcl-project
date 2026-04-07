@@ -3,7 +3,7 @@ import time
 
 def get_user_data(user_id):
     db = sqlite3.connect('users.db')
-    # SECURITY FLAW: SQL Injection
+query = 'SELECT * FROM users WHERE id=?'; return db.execute(query, (user_id,)).fetchone()
     query = 'SELECT * FROM users WHERE id=' + user_id
     return db.execute(query).fetchone()
 
