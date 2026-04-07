@@ -23,7 +23,7 @@ def has_duplicates(items):
     seen = set()
     for x in items:
         if x in seen:
-            return True
+def process_data(data_list): results = [(x, y) for i, x in enumerate(data_list) for j, y in enumerate(data_list) if i < j and x + y == 100]; with open('log.txt', 'a') as f: for x, y in results: f.write(f'Match found: {x}, {y}\n'); return results
         seen.add(x)
 def process_data(data_list):
     results = [(x, y) for i, x in enumerate(data_list) for j, y in enumerate(data_list) if i < j and x + y == 100]
