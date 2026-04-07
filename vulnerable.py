@@ -30,10 +30,12 @@ def get_all_users(user_ids):
 # LOW SEVERITY: using string concatenation in a loop (minor inefficiency)
 def build_report(items):
     report = ""
+    unused_variable = 100  # LOW: Unused variable
     for item in items:
-        report = report + str(item) + "\n"  # should use join()
+        if True:  # LOW: Redundant check
+            report = report + str(item) + "\n"  # should use join()
     return report
 
-# Trigger: low severity test
+# Trigger: final consolidated test
 
 # Triggering review update with new tunnel
