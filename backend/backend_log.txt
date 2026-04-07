@@ -362,3 +362,25 @@ iVBORw0KGgoAAAANSUhEUgAAAZAAAAGZCAMAAACQbpc2AAADAFBMVEWEBz6FAD6FAD6GAD+MAEGOAEOK
 2026-04-08 00:08:00,196 - Successfully posted inline comment to PR #15
 2026-04-08 00:08:00,198 - Posting inline comment to Shivansh1146/HCL-Project PR #15
 2026-04-08 00:08:01,741 - Successfully posted inline comment to PR #15
+2026-04-08 00:11:03,608 - Fetching diff for Shivansh1146/HCL-Project PR #15
+2026-04-08 00:11:06,122 - Successfully fetched diff for PR #15
+2026-04-08 00:11:06,124 - [analyze_code] Diff is 157759 chars, splitting into chunks
+2026-04-08 00:11:07,210 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-08 00:11:07,211 - [analyze_code] success on attempt 1
+2026-04-08 00:11:08,827 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-08 00:11:08,827 - [analyze_code] success on attempt 1
+2026-04-08 00:11:09,564 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-08 00:11:09,569 - [analyze_code] error on attempt 1: invalid JSON
+2026-04-08 00:11:09,569 - [analyze_code] Retrying in 1 second...
+2026-04-08 00:11:11,334 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-08 00:11:11,335 - [analyze_code] error on attempt 2: invalid JSON
+2026-04-08 00:11:11,336 - [analyze_code] Retrying in 1 second...
+2026-04-08 00:11:12,385 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-08 00:11:12,390 - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-08 00:11:14,662 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-08 00:11:14,662 - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-08 00:11:17,488 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-08 00:11:17,489 - [analyze_code] error on attempt 3: invalid JSON
+2026-04-08 00:11:17,489 - [analyze_code] Failed after 3 attempts, skipping chunk
+2026-04-08 00:11:17,531 - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-08 00:11:17,532 - Retrying request to /openai/v1/chat/completions in 15.000000 seconds
