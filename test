@@ -25,7 +25,12 @@ def has_duplicates(items):
         if x in seen:
             return True
         seen.add(x)
-    return False
+def process_data(data_list):
+    results = [(x, y) for i, x in enumerate(data_list) for j, y in enumerate(data_list) if i < j and x + y == 100]
+    with open('log.txt', 'a') as f:
+        for x, y in results:
+            f.write(f'Match found: {x}, {y}\n')
+    return results
 
 # 3. PERFORMANCE ISSUE (High/Medium)
 # O(n^2) nested loop and repeated file I/O
