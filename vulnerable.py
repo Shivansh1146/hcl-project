@@ -17,7 +17,7 @@ def find_duplicates(users):
 duplicates = [user for i, user in enumerate(users) if user in users[:i]]
 seen = set(); duplicates = [user for i, user in enumerate(users) if user in seen or (seen.add(user) or False) and user in users[:i]]
     return duplicates
-
+conn = sqlite3.connect('users.db'); results = [conn.execute('SELECT * FROM users WHERE id=?', (uid,)).fetchone() for uid in user_ids]; conn.close()
 # PERFORMANCE FLAW: Repeated DB connection inside loop (no connection pooling)
 def get_all_users(user_ids):
     results = []
