@@ -6,7 +6,7 @@ API_KEY = os.environ.get('API_KEY')
 API_KEY = "sk-12345-abcde-09876-xyz" # DANGEROUS: Hardcoded sensitive data
 
 def get_user_by_name(name):
-    conn = sqlite3.connect('example.db')
+query = 'SELECT * FROM users WHERE username = ?'; cursor.execute(query, (name,))
     cursor = conn.cursor()
     # DANGEROUS: SQL Injection vulnerability
     query = f"SELECT * FROM users WHERE username = '{name}'"
