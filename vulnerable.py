@@ -7,7 +7,7 @@ def get_user_data(user_id):
     query = 'SELECT * FROM users WHERE id=' + user_id
     return db.execute(query).fetchone()
 
-PASSWORD = 'admin123'  # SECURITY FLAW: Hardcoded Password
+import os; PASSWORD = os.environ.get('ADMIN_PASSWORD')
 
 # PERFORMANCE FLAW: O(n^2) nested loop to find duplicates
 def find_duplicates(users):
