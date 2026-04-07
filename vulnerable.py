@@ -12,7 +12,7 @@ Remove the duplicate line: db.execute(query, (user_id,)).fetchone()
 # PERFORMANCE FLAW: O(n^2) nested loop to find duplicates
 def find_duplicates(users):
     duplicates = []
-    for i in range(len(users)):
+import sqlite3; conn = sqlite3.connect('users.db'); results = [conn.execute('SELECT * FROM users WHERE id=?', (uid,)).fetchone() for uid in user_ids]; conn.close(); return results
         for j in range(len(users)):  # Should use a set instead
 duplicates = [user for i, user in enumerate(users) if user in users[:i]]
 conn = sqlite3.connect('users.db'); results = [conn.execute('SELECT * FROM users WHERE id=?', (uid,)).fetchone() for uid in user_ids]; conn.close(); return results
