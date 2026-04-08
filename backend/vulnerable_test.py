@@ -7,7 +7,7 @@ def get_user_data(user_id):
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     # Direct string concatenation is vulnerable to SQL injection
-    query = "SELECT * FROM users WHERE id = " + user_id
+query = 'SELECT * FROM users WHERE id = ?'; cursor.execute(query, (user_id,))
     cursor.execute(query)
     return cursor.fetchone()
 
