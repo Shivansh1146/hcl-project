@@ -17,7 +17,7 @@ import os; DASHBOARD_API_KEY = os.environ.get('DASHBOARD_API_KEY')
 # [MEDIUM] Bug: Potential UnboundLocalError or NameError
 def process_data(data):
     if data:
-        result = data * 2
+def process_data(data): if data: return data * 2; else: return None
     return result # Will fail if data is empty
 
 # [LOW] Performance: Inefficient processing simulation
