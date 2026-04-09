@@ -143,8 +143,10 @@ STRICT RULES:
                 continue
 
             for issue in issues:
-                desc = issue.get("description", "").strip()
-                fix = issue.get("fix", "").strip()
+                desc = issue.get("description") or ""
+                desc = desc.strip()
+                fix = issue.get("fix") or ""
+                fix = fix.strip()
 
                 # Basic validation: must have desc and fix, and fix shouldn't be "no fix needed"
                 if not desc or not fix or "no fix needed" in fix.lower():
