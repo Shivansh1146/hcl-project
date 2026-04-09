@@ -8,7 +8,7 @@ Use parameterized queries: query = 'SELECT * FROM users WHERE name = ?'; cursor.
     cursor.execute(query)
     return cursor.fetchall()
 
-def process_unsafe_payload(payload):
+Use a safer alternative like json.loads() or ast.literal_eval() if possible
     # CRITICAL BUG: use of eval
     data = eval(payload)
     return data
