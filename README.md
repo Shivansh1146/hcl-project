@@ -12,10 +12,11 @@ A production-grade, asynchronous code review agent that intercepts GitHub Pull R
 ## ✨ Key Features
 
 - **🚀 Real-Time Webhook Pipeline**: FastAPI `BackgroundTasks` handle induction instantly to prevent GitHub timeouts.
-- **🧠 AI-Powered Insights**: LLaMA-based analysis catches SQL injection, hardcoded secrets, and logic bugs.
+- **🧠 AI-Powered Insights**: LLaMA-based analysis catches SQL injection, hardcoded secrets, and logic bugs at lightning speed.
+- **✅ 1-Click Committable Suggestions**: Native GitHub Markdown integration reformats AI output into beautiful, actionable ````suggestion` widget blocks in PR code reviews.
 - **📊 Glassmorphism Dashboard**: Premium SaaS-style Command Center with live telemetry and spectral severity metrics.
 - **🛡️ SQLite Persistence**: Full history of reviews and issues stored persistently in `reviews.db`.
-- **🔍 Anti-Hallucination Engine**: Custom validator cross-checks AI findings against raw git diffs for near-zero false positives.
+- **🔍 Intelligent Validation**: Custom constraints prune hallucinations while an adaptive Abstract Syntax Tree (AST) checker ensures bug fixes are natively parsed.
 - **✨ Decision Intelligence**: Actionable PR status (Block Merge vs. Safe) for rapid decision making.
 
 ---
@@ -57,10 +58,13 @@ GitHub PR opened/updated
 [6] Heuristic Filter → drops vague/self-contradicting issues
         │
         ▼
-[7] Anti-Hallucination Validator → corrects variable names & types
+[7] Anti-Hallucination & Syntax Validation → Adaptive parsing bypasses strict AST errors and enforces variable reality
         │
         ▼
-[8] Post inline comments to GitHub PR (422 fallback to thread)
+[8] Markdown Serialization → Output is dynamically heavily-formatted into ````suggestion` widget structures
+        │
+        ▼
+[9] Post inline committable suggestions to GitHub PR (422 fallback to thread)
         │
         ▼
 [9] Record to telemetry → dashboard updates live

@@ -90,7 +90,7 @@ class GitHubService:
         raw_fix = issue.get("fix", "")
         severity = str(issue.get("severity", "MEDIUM")).upper()
 
-        body = f"🔍 **AI Review ({severity})**\n\n**Problem:**\n{raw_description}\n\n**Suggested Fix:**\n```suggestion\n{raw_fix}\n```"
+        body = f"🔍 AI Review ({severity})\n\nProblem:\n{raw_description}\n\nFix:\n```suggestion\n{raw_fix}\n```"
         try:
             line = int(issue.get("line", 1))
         except (ValueError, TypeError):

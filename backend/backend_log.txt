@@ -2257,3 +2257,845 @@ NameError: name 'httpx' is not defined
 2026-04-10 00:31:45,898 - backend - INFO - Database initialized (Persistent Mode)
 2026-04-10 00:34:49,953 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
 2026-04-10 00:34:49,954 - backend - INFO - 🛑 [webhook] SHA 4702bf46b72abc4ec1e076f847914cab96c41e6c skip: active task exists and is not stale.
+2026-04-10 00:35:52,458 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:35:54,435 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:39:13,065 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:39:13,070 - backend - INFO - SHA 42d7a5581738b23ac1ec3e7a5b9e5f88cdfd2ad6 atomically claimed.
+2026-04-10 00:39:13,071 - backend - INFO - 🚀 [Enterprise] Starting PR #27 | SHA: 42d7a5581738b23ac1ec3e7a5b9e5f88cdfd2ad6
+2026-04-10 00:39:13,073 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #27
+2026-04-10 00:39:14,125 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/27 "HTTP/1.1 200 OK"
+2026-04-10 00:39:15,770 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:15,802 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:16,810 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:16,811 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:17,772 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:17,773 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:19,167 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:19,168 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:20,607 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:20,609 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:22,074 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:22,075 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:22,116 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:22,117 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:39:24,711 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:24,713 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:24,751 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:24,751 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-04-10 00:39:33,832 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:33,834 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:39:36,391 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:36,393 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:36,431 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:36,432 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-10 00:39:47,475 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:47,476 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:47,515 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:47,516 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:39:56,092 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:39:56,093 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:39:56,135 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:39:56,136 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 7.000000 seconds
+2026-04-10 00:40:03,194 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:03,195 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:40:05,511 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:05,512 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:05,553 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:05,554 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-10 00:40:16,758 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:16,759 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:16,796 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:16,798 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:40:25,654 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:25,658 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:25,702 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:25,703 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:40:34,789 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:34,790 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:34,834 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:34,836 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:40:43,985 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:43,986 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:44,026 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:44,027 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 5.000000 seconds
+2026-04-10 00:40:49,122 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:40:49,123 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:40:51,188 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:40:51,190 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:40:51,197 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:40:51,198 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function is not handling the exceptio...
+2026-04-10 00:40:51,198 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function is not optimized for perform...
+2026-04-10 00:40:51,198 - services.filter_service - INFO - ✅ FILTER PASSED: 48 issues
+2026-04-10 00:40:51,199 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,199 - backend - WARNING - [DiffValidator] File not in diff: .env
+2026-04-10 00:40:51,199 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,199 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\.venv\Lib\site-packages\aiosqlite\core.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\main.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:40:51,200 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,201 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\.env
+2026-04-10 00:40:51,202 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] Line 414 not in added lines for backend/backend_log.txt
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] File not in diff: <unknown>
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] Line 102 not in added lines for backend/main.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] Line 117 not in added lines for backend/main.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] Line 63 not in added lines for backend/main.py
+2026-04-10 00:40:51,203 - backend - WARNING - [DiffValidator] Line 102 not in added lines for backend/main.py
+2026-04-10 00:40:51,206 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,207 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,207 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,207 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,208 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,208 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,208 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,208 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,209 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:40:51,209 - backend - WARNING - 🛡️ Multi-Layer Pruning: Removed 48 invalid issues
+2026-04-10 00:40:51,210 - backend - INFO - SHA 42d7a5581738b23ac1ec3e7a5b9e5f88cdfd2ad6 marked as completed
+2026-04-10 00:40:51,212 - backend - INFO - 📈 Telemetry Finalized: PR ID 15 Status: success
+2026-04-10 00:40:53,308 - backend - INFO - Database initialized (Persistent Mode)
+2026-04-10 00:43:49,736 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:50:06,690 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:50:06,699 - backend - INFO - SHA 434057a833c9e66d1730e34c8fc904d5332627a6 atomically claimed.
+2026-04-10 00:50:06,700 - backend - INFO - 🚀 [Enterprise] Starting PR #28 | SHA: 434057a833c9e66d1730e34c8fc904d5332627a6
+2026-04-10 00:50:06,701 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #28
+2026-04-10 00:50:07,577 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/28 "HTTP/1.1 200 OK"
+2026-04-10 00:50:09,154 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:09,178 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:10,273 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:10,274 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:11,531 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:11,532 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:13,072 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:13,073 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:14,538 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:14,540 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:16,141 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:16,143 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:16,187 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:16,188 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-10 00:50:18,244 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:18,245 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:50:20,795 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:20,797 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:20,837 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:20,838 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:50:30,401 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:30,402 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:30,442 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:30,443 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-10 00:50:41,375 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:41,376 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:41,416 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:41,417 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:50:50,980 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:50,983 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:51,026 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:51,027 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 6.000000 seconds
+2026-04-10 00:50:57,076 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:57,077 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:50:59,103 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:50:59,104 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:50:59,141 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:50:59,142 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:51:07,216 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:51:07,217 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-10 00:51:10,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:51:10,319 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:51:10,355 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:51:10,356 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:51:19,636 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:51:19,637 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:51:19,684 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:51:19,685 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:51:28,467 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:51:28,469 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:51:28,508 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:51:28,509 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:51:37,753 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:51:37,754 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:51:37,795 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:51:37,795 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 7.000000 seconds
+2026-04-10 00:51:45,735 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:51:45,736 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:51:45,738 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:51:45,738 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function is not handling the exceptio...
+2026-04-10 00:51:45,739 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function does not seem to handle the ...
+2026-04-10 00:51:45,739 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function is not optimized for perform...
+2026-04-10 00:51:45,739 - services.filter_service - INFO - [filter_service] REJECTED (score -1.0): httpx exception handling can be improved...
+2026-04-10 00:51:45,739 - services.filter_service - INFO - ✅ FILTER PASSED: 50 issues
+2026-04-10 00:51:45,739 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:51:45,739 - backend - WARNING - [DiffValidator] File not in diff: .env
+2026-04-10 00:51:45,739 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:51:45,739 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:51:45,740 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:51:45,740 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,740 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,741 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,742 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,743 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\services\\github_service.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] Line 414 not in added lines for backend/backend_log.txt
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] File not in diff: <unknown>
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] Line 102 not in added lines for backend/main.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] Line 117 not in added lines for backend/main.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] Line 63 not in added lines for backend/main.py
+2026-04-10 00:51:45,744 - backend - WARNING - [DiffValidator] Line 102 not in added lines for backend/main.py
+2026-04-10 00:51:45,745 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,745 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,745 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,745 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,746 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,746 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,746 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,747 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,747 - backend - WARNING - Technical Validation Failure: Broken Python syntax. Error: invalid syntax (<unknown>, line 2)
+2026-04-10 00:51:45,747 - backend - WARNING - 🛡️ Multi-Layer Pruning: Removed 50 invalid issues
+2026-04-10 00:51:45,748 - backend - INFO - SHA 434057a833c9e66d1730e34c8fc904d5332627a6 marked as completed
+2026-04-10 00:51:45,748 - backend - INFO - 📈 Telemetry Finalized: PR ID 17 Status: success
+2026-04-10 00:53:43,310 - backend - INFO - Database initialized (Persistent Mode)
+2026-04-10 00:55:44,500 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:55:44,505 - backend - INFO - SHA dc3da34eae83e5ff57e3ddead4ffd93c78437812 atomically claimed.
+2026-04-10 00:55:44,506 - backend - INFO - 🚀 [Enterprise] Starting PR #29 | SHA: dc3da34eae83e5ff57e3ddead4ffd93c78437812
+2026-04-10 00:55:44,507 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #29
+2026-04-10 00:55:45,503 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29 "HTTP/1.1 200 OK"
+2026-04-10 00:55:47,146 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:47,160 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:48,891 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:48,892 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:49,778 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:49,780 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:51,195 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:51,197 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:52,626 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:52,628 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:53,966 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:53,968 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:54,010 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:55:54,011 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:55:56,370 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:55:56,371 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:55:56,412 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:55:56,414 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 9.000000 seconds
+2026-04-10 00:56:05,502 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:05,502 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 00:56:07,567 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:56:07,568 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:56:07,609 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:07,610 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 8.000000 seconds
+2026-04-10 00:56:17,090 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 00:56:17,092 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 00:56:17,146 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:17,147 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99416, Requested 2077. Please try again in 21m29.952s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:18,195 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:18,196 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99415, Requested 2077. Please try again in 21m29.088s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:19,251 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:19,251 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99414, Requested 2077. Please try again in 21m28.224s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:19,251 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:19,296 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:19,297 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99414, Requested 2278. Please try again in 24m21.888s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:20,349 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:20,350 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99413, Requested 2278. Please try again in 24m21.024s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:21,402 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:21,403 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99411, Requested 2278. Please try again in 24m19.295999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:21,403 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:21,440 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:21,442 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99411, Requested 2212. Please try again in 23m22.272s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:22,481 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:22,482 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99410, Requested 2212. Please try again in 23m21.408s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:23,528 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:23,529 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99409, Requested 2212. Please try again in 23m20.543999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:23,530 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:23,562 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:23,563 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99409, Requested 2111. Please try again in 21m53.28s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:24,613 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:24,614 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99408, Requested 2111. Please try again in 21m52.416s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:25,663 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:25,664 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99407, Requested 2115. Please try again in 21m55.008s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:25,665 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:25,704 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:25,705 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99407, Requested 2052. Please try again in 21m0.576s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:26,751 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:26,752 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99405, Requested 2034. Please try again in 20m43.296s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:27,815 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:27,816 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99404, Requested 2030. Please try again in 20m38.976s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:27,817 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:27,855 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:27,856 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99404, Requested 1919. Please try again in 19m3.072s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:28,894 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:28,895 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99403, Requested 1919. Please try again in 19m2.208s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:29,953 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:29,954 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99402, Requested 1941. Please try again in 19m20.351999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:29,955 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:29,991 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:29,992 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99402, Requested 1889. Please try again in 18m35.424s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:31,035 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:31,036 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99400, Requested 1911. Please try again in 18m52.704s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:32,084 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:32,084 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99399, Requested 1893. Please try again in 18m36.288s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:32,085 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:32,125 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:32,126 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99399, Requested 821. Please try again in 3m10.08s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:33,168 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:33,170 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99398, Requested 799. Please try again in 2m50.208s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:34,227 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 00:56:34,229 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01knaaz821ed78tce39p6a6dj4` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99397, Requested 821. Please try again in 3m8.352s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+2026-04-10 00:56:34,229 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:56:34,229 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:56:34,230 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the db_retry function does not handle the case whe...
+2026-04-10 00:56:34,230 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): the process_webhook function does not handle the c...
+2026-04-10 00:56:34,231 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): http request: get https://api.github.com/repos/shi...
+2026-04-10 00:56:34,231 - services.filter_service - INFO - [filter_service] REJECTED (score 0.0): sha 48ce013289f5ea7e60b8898de7e898838c00a704 marke...
+2026-04-10 00:56:34,232 - services.filter_service - INFO - ✅ FILTER PASSED: 27 issues
+2026-04-10 00:56:34,236 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,239 - backend - WARNING - [DiffValidator] File not in diff: .env
+2026-04-10 00:56:34,241 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,245 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,250 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\.venv\Lib\site-packages\aiosqlite\core.py
+2026-04-10 00:56:34,252 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,253 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,256 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\main.py
+2026-04-10 00:56:34,258 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\.env
+2026-04-10 00:56:34,259 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,260 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\main.py
+2026-04-10 00:56:34,263 - backend - WARNING - [DiffValidator] File not in diff: C:\Users\shivansh\Desktop\HCL Project\backend\stats_store.py
+2026-04-10 00:56:34,264 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,265 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\main.py
+2026-04-10 00:56:34,265 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,266 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,266 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,268 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,269 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,270 - backend - WARNING - [DiffValidator] File not in diff: C:\\Users\\shivansh\\Desktop\\HCL Project\\backend\\stats_store.py
+2026-04-10 00:56:34,271 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:56:34,273 - backend - WARNING - [DiffValidator] File not in diff: backend.log
+2026-04-10 00:56:34,274 - backend - WARNING - 🛡️ Multi-Layer Pruning: Removed 22 invalid issues
+2026-04-10 00:56:34,276 - backend - INFO - 📈 Telemetry Finalized: PR ID 19 Status: commenting
+2026-04-10 00:56:34,276 - services.github_service - INFO - Posting inline comment to Shivansh1146/HCL-Project PR #29
+2026-04-10 00:56:36,313 - httpx - INFO - HTTP Request: POST https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29/comments "HTTP/1.1 201 Created"
+2026-04-10 00:56:36,314 - services.github_service - INFO - Posting inline comment to Shivansh1146/HCL-Project PR #29
+2026-04-10 00:56:38,022 - httpx - INFO - HTTP Request: POST https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29/comments "HTTP/1.1 201 Created"
+2026-04-10 00:56:38,023 - services.github_service - INFO - Posting inline comment to Shivansh1146/HCL-Project PR #29
+2026-04-10 00:56:39,396 - httpx - INFO - HTTP Request: POST https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29/comments "HTTP/1.1 201 Created"
+2026-04-10 00:56:39,398 - services.github_service - INFO - Posting inline comment to Shivansh1146/HCL-Project PR #29
+2026-04-10 00:56:41,012 - httpx - INFO - HTTP Request: POST https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29/comments "HTTP/1.1 201 Created"
+2026-04-10 00:56:41,015 - services.github_service - INFO - Posting inline comment to Shivansh1146/HCL-Project PR #29
+2026-04-10 00:56:43,274 - httpx - INFO - HTTP Request: POST https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29/comments "HTTP/1.1 201 Created"
+2026-04-10 00:56:43,278 - backend - INFO - SHA dc3da34eae83e5ff57e3ddead4ffd93c78437812 marked as completed
+2026-04-10 00:56:43,283 - backend - INFO - 📈 Telemetry Finalized: PR ID 19 Status: success
+2026-04-10 00:56:48,055 - backend - INFO - Database initialized (Persistent Mode)
+2026-04-10 00:57:17,700 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:57:17,705 - backend - INFO - SHA 51368b6486d63f18bbeb1339b5d8c0db225b9ae9 atomically claimed.
+2026-04-10 00:57:17,707 - backend - INFO - 🚀 [Enterprise] Starting PR #29 | SHA: 51368b6486d63f18bbeb1339b5d8c0db225b9ae9
+2026-04-10 00:57:17,708 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #29
+2026-04-10 00:57:18,754 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29 "HTTP/1.1 200 OK"
+2026-04-10 00:57:19,399 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:19,400 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:20,448 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:20,449 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:21,500 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:21,501 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:21,501 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:21,540 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:21,540 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:22,583 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:22,583 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:23,626 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:23,628 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:23,628 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:23,665 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:23,666 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:24,712 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:24,713 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:25,762 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:25,764 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:25,764 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:25,797 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:25,798 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:26,844 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:26,845 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:27,894 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:27,895 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:27,895 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:27,933 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:27,934 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:28,977 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:28,978 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:30,270 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:30,271 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:30,271 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:30,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:30,318 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:31,361 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:31,362 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:32,409 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:32,410 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:32,411 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:32,446 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:32,447 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:33,492 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:33,494 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:34,532 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:34,533 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:34,533 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:34,570 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:34,571 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:35,467 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:57:35,470 - backend - INFO - SHA d75c98212d1ddf6b9b610f6334482c82b772d71b atomically claimed.
+2026-04-10 00:57:35,472 - backend - INFO - 🚀 [Enterprise] Starting PR #29 | SHA: d75c98212d1ddf6b9b610f6334482c82b772d71b
+2026-04-10 00:57:35,474 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #29
+2026-04-10 00:57:36,141 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:36,142 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:36,600 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/29 "HTTP/1.1 200 OK"
+2026-04-10 00:57:36,709 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:36,709 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:37,184 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:37,185 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:37,185 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:37,219 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:37,220 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:37,759 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:37,761 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:38,264 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:38,265 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:38,794 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:38,795 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:38,796 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:38,833 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:38,834 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:39,310 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:39,311 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:39,312 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:39,347 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:39,348 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:39,875 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:39,876 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:40,400 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:40,401 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:40,915 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:40,916 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:40,917 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:40,961 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:40,962 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:41,444 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:41,445 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:41,446 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:41,481 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:41,482 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:41,996 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:41,997 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:42,517 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:42,518 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:43,044 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:43,045 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:43,046 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:43,086 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:43,086 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:43,572 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:43,573 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:43,573 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:43,610 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:43,610 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:44,125 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:44,126 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:44,656 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:44,657 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:45,173 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:45,173 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:45,174 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:45,214 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:45,215 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:45,692 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:45,693 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:45,694 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:45,728 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:45,729 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:46,256 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:46,257 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:46,778 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:46,779 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:47,294 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:47,295 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:47,295 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:47,328 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:47,329 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:47,830 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:47,831 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:47,831 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:47,874 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:47,875 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:48,385 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:48,386 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:48,922 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:48,923 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:49,422 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:49,424 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:49,424 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:49,460 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:49,461 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:49,975 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:49,976 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:49,977 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:50,017 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:50,019 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:50,501 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:50,503 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:51,067 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:51,072 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:51,542 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:51,543 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:51,543 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:51,581 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:51,582 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:52,118 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:52,120 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:52,120 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:52,166 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:52,168 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:52,633 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:52,634 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:53,211 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:53,213 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:53,684 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:53,684 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:53,685 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:53,717 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:53,718 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:54,271 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:54,273 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:54,273 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:54,317 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:54,318 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:54,766 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:54,768 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:55,363 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:55,364 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:55,807 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:55,808 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:55,808 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:55,842 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:55,843 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:56,408 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:56,409 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:56,410 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:56,410 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:57:56,410 - services.filter_service - INFO - ✅ FILTER PASSED: 0 issues
+2026-04-10 00:57:56,411 - backend - INFO - SHA 51368b6486d63f18bbeb1339b5d8c0db225b9ae9 marked as completed
+2026-04-10 00:57:56,413 - backend - INFO - 📈 Telemetry Finalized: PR ID 21 Status: success
+2026-04-10 00:57:56,887 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:56,894 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:57,944 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:57,945 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:57,946 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:57:57,979 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:57,981 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:57:59,032 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:57:59,034 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:00,078 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:00,079 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:00,080 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:00,113 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:00,114 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:01,157 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:01,159 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:02,201 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:02,202 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:02,202 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:02,235 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:02,241 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:03,275 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:03,277 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:04,326 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:04,327 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:04,327 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:04,363 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:04,364 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:05,407 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:05,408 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:06,456 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:06,458 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:06,458 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:06,494 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:06,495 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:07,542 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:07,543 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:08,599 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:08,601 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:08,601 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:08,637 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:08,638 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:09,680 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:09,680 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:10,725 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:10,726 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:10,726 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:10,761 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:10,762 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:11,814 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:11,816 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:12,856 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:58:12,857 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:58:12,857 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:58:12,857 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:58:12,857 - services.filter_service - INFO - ✅ FILTER PASSED: 0 issues
+2026-04-10 00:58:12,858 - backend - INFO - SHA d75c98212d1ddf6b9b610f6334482c82b772d71b marked as completed
+2026-04-10 00:58:12,859 - backend - INFO - 📈 Telemetry Finalized: PR ID 23 Status: success
+2026-04-10 00:59:46,746 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 00:59:46,747 - backend - INFO - SHA 7361e4158d64a004c91d1f5b6acd02b3aa0d8aef atomically claimed.
+2026-04-10 00:59:46,747 - backend - INFO - 🚀 [Enterprise] Starting PR #30 | SHA: 7361e4158d64a004c91d1f5b6acd02b3aa0d8aef
+2026-04-10 00:59:46,748 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #30
+2026-04-10 00:59:47,436 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/30 "HTTP/1.1 200 OK"
+2026-04-10 00:59:47,495 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:59:47,496 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:59:48,549 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:59:48,550 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:59:49,598 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 00:59:49,600 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 00:59:49,601 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 00:59:49,602 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 00:59:49,602 - services.filter_service - INFO - ✅ FILTER PASSED: 0 issues
+2026-04-10 00:59:49,603 - backend - INFO - SHA 7361e4158d64a004c91d1f5b6acd02b3aa0d8aef marked as completed
+2026-04-10 00:59:49,604 - backend - INFO - 📈 Telemetry Finalized: PR ID 25 Status: success
+2026-04-10 01:00:28,692 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 01:00:30,728 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 01:01:15,194 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 01:01:15,195 - backend - INFO - SHA 6c6b790ffc644fab8c1af8b34c55989e5b862565 atomically claimed.
+2026-04-10 01:01:15,196 - backend - INFO - 🚀 [Enterprise] Starting PR #31 | SHA: 6c6b790ffc644fab8c1af8b34c55989e5b862565
+2026-04-10 01:01:15,196 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #31
+2026-04-10 01:01:16,217 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/31 "HTTP/1.1 200 OK"
+2026-04-10 01:01:16,600 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:16,601 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:17,648 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:17,650 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:18,695 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:18,696 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:18,696 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:18,733 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:18,735 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:19,780 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:19,781 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:20,829 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:20,830 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:20,830 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:20,876 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:20,877 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:21,954 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:21,956 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:23,012 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:23,013 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:23,014 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:23,049 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:23,050 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:24,106 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:24,107 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:25,166 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:25,167 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:25,171 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:25,249 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:25,250 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:26,289 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:26,290 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:27,347 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:27,348 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:27,348 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:27,386 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:27,387 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:28,427 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:28,428 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:29,475 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:29,476 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:29,476 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:29,521 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:29,523 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:30,572 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:30,573 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:31,618 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:31,620 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:31,620 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:31,657 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:31,657 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:32,709 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:32,709 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:33,773 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:33,775 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:33,775 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:33,821 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:33,822 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:34,859 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:34,860 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:35,897 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:35,898 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:35,899 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:35,936 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:35,937 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:36,973 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:36,974 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:38,050 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:38,051 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:38,051 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:38,096 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:38,097 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:39,144 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:39,145 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:40,190 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:40,191 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:40,191 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:40,223 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:40,224 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:41,270 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:41,271 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:42,310 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:42,311 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:42,311 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:42,344 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:42,345 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:43,394 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:43,395 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:44,439 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:44,440 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:44,440 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:44,477 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:44,478 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:45,519 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:45,520 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:46,569 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:46,570 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:46,570 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:46,610 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:46,610 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:47,660 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:47,662 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:48,706 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:48,707 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:48,707 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:48,740 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:48,741 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:49,784 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:49,785 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:50,831 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:50,832 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:50,833 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:50,872 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:50,873 - backend - ERROR - [analyze_code] error on attempt 1: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:51,923 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:51,924 - backend - ERROR - [analyze_code] error on attempt 2: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:52,974 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-04-10 01:01:52,977 - backend - ERROR - [analyze_code] error on attempt 3: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-04-10 01:01:52,979 - backend - ERROR - [analyze_code] Failed after retries, skipping chunk
+2026-04-10 01:01:52,980 - services.filter_service - INFO - [filter_service] Filtering issues
+2026-04-10 01:01:52,981 - services.filter_service - INFO - ✅ FILTER PASSED: 0 issues
+2026-04-10 01:01:52,982 - backend - INFO - SHA 6c6b790ffc644fab8c1af8b34c55989e5b862565 marked as completed
+2026-04-10 01:01:52,985 - backend - INFO - 📈 Telemetry Finalized: PR ID 27 Status: success
+2026-04-10 01:05:47,110 - backend - INFO - Database initialized (Persistent Mode)
+2026-04-10 01:15:08,332 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 01:15:08,335 - backend - INFO - SHA f4cbf3be99695b707bbe481b56c712d02143fb97 atomically claimed.
+2026-04-10 01:15:08,336 - backend - INFO - 🚀 [Enterprise] Starting PR #31 | SHA: f4cbf3be99695b707bbe481b56c712d02143fb97
+2026-04-10 01:15:08,336 - services.github_service - INFO - Fetching diff for Shivansh1146/HCL-Project PR #31
+2026-04-10 01:15:09,119 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Shivansh1146/HCL-Project/pulls/31 "HTTP/1.1 200 OK"
+2026-04-10 01:15:10,148 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:15:10,160 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:15:10,881 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:15:10,882 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:15:11,433 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:15:11,434 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:15:11,490 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:15:11,490 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 10.000000 seconds
+2026-04-10 01:15:21,548 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:15:21,549 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 6.000000 seconds
+2026-04-10 01:15:28,260 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:15:28,261 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:15:28,299 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:15:28,300 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 13.000000 seconds
+2026-04-10 01:15:41,365 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:15:41,365 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 1.000000 seconds
+2026-04-10 01:15:43,906 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:15:43,907 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:15:43,952 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:15:43,953 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 19.000000 seconds
+2026-04-10 01:15:51,625 - backend - ERROR - GITHUB_WEBHOOK_SECRET is not set in .env
+2026-04-10 01:16:04,008 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:16:04,009 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:16:04,050 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:16:04,051 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 19.000000 seconds
+2026-04-10 01:16:23,130 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:16:23,131 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 2.000000 seconds
+2026-04-10 01:16:25,758 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:16:25,761 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:16:25,802 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:16:25,803 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 18.000000 seconds
+2026-04-10 01:16:44,447 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:16:44,448 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:16:44,491 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:16:44,492 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 18.000000 seconds
+2026-04-10 01:17:03,030 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:17:03,030 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:17:03,081 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:17:03,081 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 17.000000 seconds
+2026-04-10 01:17:21,030 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:17:21,032 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:17:21,079 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-04-10 01:17:21,079 - groq._base_client - INFO - Retrying request to /openai/v1/chat/completions in 21.000000 seconds
+2026-04-10 01:17:43,473 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-10 01:17:43,474 - backend - INFO - [analyze_code] success on attempt 1
+2026-04-10 01:17:43,474 - backend - CRITICAL - 🔥 [V5-OBSERVABILITY] Pipeline failure: 'NoneType' object has no attribute 'strip'
+Traceback (most recent call last):
+  File "C:\Users\shivansh\Desktop\HCL Project\backend\main.py", line 155, in process_webhook
+    analysis = await analyze_code(diff)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shivansh\Desktop\HCL Project\backend\services\ai_service.py", line 175, in analyze_code
+    return await _ai_service_instance.analyze_code(diff)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shivansh\Desktop\HCL Project\backend\services\ai_service.py", line 147, in analyze_code
+    fix = issue.get("fix", "").strip()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2026-04-10 01:17:43,477 - backend - INFO - SHA f4cbf3be99695b707bbe481b56c712d02143fb97 marked as failed
+2026-04-10 01:17:43,478 - backend - INFO - 📈 Telemetry Finalized: PR ID 29 Status: error
