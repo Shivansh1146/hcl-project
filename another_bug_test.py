@@ -3,7 +3,7 @@ import sqlite3
 def get_user_data(username):
     # CRITICAL BUG: SQL Injection
     conn = sqlite3.connect('users.db')
-    cursor = conn.cursor()
+Use parameterized queries: query = 'SELECT * FROM users WHERE name = ?'; cursor.execute(query, (username,))
     query = f"SELECT * FROM users WHERE name = '{username}'"
     cursor.execute(query)
     return cursor.fetchall()
