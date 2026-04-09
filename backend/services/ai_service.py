@@ -1,16 +1,16 @@
 import os
 import json
-import time
+import asyncio
 import string
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, List
 from dotenv import load_dotenv
-from groq import Groq, GroqError
+from groq import AsyncGroq, GroqError
 
 # Ensure environment variables are loaded
 load_dotenv()
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("backend")
 
 class AIService:
     """Service to handle AI interactions using Groq (free tier)."""
@@ -21,10 +21,10 @@ class AIService:
             logger.warning("Groq API key is not set. Set GROQ_API_KEY in .env")
             self.client = None
         else:
-            self.client = Groq(api_key=self.api_key)
+            self.client = AsyncGroq(api_key=self.api_key)
 
     def _is_similar(self, desc1: str, desc2: str) -> bool:
-        """Normalizes descriptions and performs similarity matching."""
+        """Normalizes descriptions and performs semantic similarity matching."""
         def normalize(t: str) -> str:
             t = t.lower()
             return t.translate(str.maketrans('', '', string.punctuation)).strip()
@@ -35,133 +35,119 @@ class AIService:
         if not norm1 or not norm2:
             return False
 
-        # Simple contains match
-        if norm1 in norm2 or norm2 in norm1:
-            return True
-
-        # Word overlap match for inverted syntax cases
+        # Jaccard similarity for better deduplication
         words1 = set(norm1.split())
         words2 = set(norm2.split())
 
-        stop_words = {"is", "are", "the", "a", "an", "this", "that", "it", "to", "in", "on", "of", "for", "and", "or", "found"}
+        stop_words = {"is", "are", "the", "a", "an", "this", "that", "it", "to", "in", "on", "of", "for", "and", "or", "found", "should", "could", "be"}
         words1 = words1 - stop_words
         words2 = words2 - stop_words
 
         if not words1 or not words2:
-            return False
+            return norm1 == norm2
 
         intersection = words1.intersection(words2)
-        # If they share at least 2 significant keyword roots, treat as same
-        if len(intersection) >= 2:
-            return True
+        union = words1.union(words2)
 
-        return False
+        score = len(intersection) / len(union)
+        return score > 0.6 # Stricter threshold
 
-    def _analyze_chunk_with_retry(self, diff_chunk: str) -> Dict[str, Any]:
-        """Calls OpenAI with retry logic."""
-        prompt = f"""You are a Senior Code Quality and Security Engineer.
-Your goal is to perform a deep-dive review of the code diff.
-
-Analyze the code diff below and return ONLY valid JSON:
-
-{{
-  "issues": [
-    {{
-      "type": "bug|security|performance|quality",
-      "severity": "low|medium|high",
-      "file": "file_path_from_diff",
-      "line": 12,
-      "description": "...",
-      "fix": "..."
-    }}
-  ]
-}}
-
+    async def _analyze_chunk_with_retry(self, diff_chunk: str) -> Dict[str, Any]:
+        """Calls Groq with JSON mode and system prompt."""
+        system_prompt = """You are a Senior Code Quality and Security Engineer.
+Analyze the code diff and return a JSON object with issues found.
 STRICT RULES:
-- limit output to MAX 5 issues per chunk
-- YOU MUST return ALL real issues found. DO NOT skip minor issues.
-- You MUST label minor inefficiencies (unused variables, string concatenation in loops, redundant checks) as 'low' severity.
-- You MUST label large performance problems or bugs as 'medium'.
-- You MUST label security vulnerabilities as 'high'.
-- Be extremely thorough. Every chunk should ideally have 3-5 issues if the code is poor.
-- Provide a REAL fix (actual code, not detailed explanation)
-- 'file' must match actual file name from diff
-- 'line' must be approximate location of issue (int). do NOT leave empty.
+- Return ONLY valid JSON.
+- limit output to MAX 5 issues per chunk.
+- Label minor inefficiencies as 'low'.
+- Label performance/bugs as 'medium'.
+- Label security vulnerabilities as 'high'.
+- Provide a REAL fix (actual code snippet for suggestion).
+- 'file' MUST match the file path in the diff.
+- 'line' MUST be the actual line number from the diff (int).
+- If no issues found, return {"issues": []}.
+- Detect Phrases like "no fix needed" and REJECT such issues entirely."""
 
+        user_prompt = f"Code Diff Chunk:\n{diff_chunk}"
 
-Code Diff:
-{diff_chunk}
-"""
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                response = self.client.chat.completions.create(
+                response = await self.client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
-                    messages=[{"role": "user", "content": prompt}],
-                    temperature=0.2,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.1,
+                    response_format={"type": "json_object"}
                 )
 
                 content = response.choices[0].message.content.strip()
-
-                if content.startswith("```json"):
-                    content = content[7:]
-                if content.startswith("```"):
-                    content = content[3:]
-                if content.endswith("```"):
-                    content = content[:-3]
-                content = content.strip()
-
                 parsed_json = json.loads(content)
                 logger.info(f"[analyze_code] success on attempt {attempt + 1}")
                 return parsed_json
 
-            except json.JSONDecodeError as e:
-                logger.error(f"[analyze_code] error on attempt {attempt + 1}: invalid JSON")
-            except GroqError as e:
-                logger.error(f"[analyze_code] error on attempt {attempt + 1}: API failure - {str(e)}")
-                print(f"❌ GROQ ERROR: {str(e)}")
-            except Exception as e:
-                logger.error(f"[analyze_code] error on attempt {attempt + 1}: Unexpected - {str(e)}")
+            except (json.JSONDecodeError, GroqError, Exception) as e:
+                logger.error(f"[analyze_code] error on attempt {attempt + 1}: {str(e)}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(1)
 
-            # If we reach here, an exception occurred
-            if attempt < max_retries - 1:
-                logger.info(f"[analyze_code] Retrying in 1 second...")
-                time.sleep(1)
-
-        # Exhausted retries
-        logger.error("[analyze_code] Failed after 3 attempts, skipping chunk")
+        logger.error("[analyze_code] Failed after retries, skipping chunk")
         return {"issues": []}
 
-    def analyze_code(self, diff: str) -> Dict[str, Any]:
+    def _get_line_aware_chunks(self, diff: str, max_size: int = 4000) -> list:
+        """Splits diff into chunks without breaking lines."""
+        lines = diff.splitlines()
+        chunks = []
+        current_chunk = []
+        current_size = 0
+
+        for line in lines:
+            line_size = len(line) + 1
+            if current_size + line_size > max_size and current_chunk:
+                chunks.append("\n".join(current_chunk))
+                current_chunk = []
+                current_size = 0
+
+            current_chunk.append(line)
+            current_size += line_size
+
+        if current_chunk:
+            chunks.append("\n".join(current_chunk))
+
+        return chunks
+
+    async def analyze_code(self, diff: str) -> Dict[str, Any]:
         """Analyzes code diff content using AI, handling large diff chunking."""
         if not diff:
-            logger.error("[analyze_code] error: empty response. No diff provided.")
-            return {"issues": []}
+            return {"status": "failed", "reason": "EMPTY_DIFF", "issues": []}
 
         if not self.client:
-            logger.error("[analyze_code] error: OpenAI client not initialized (missing API key)")
-            return {"issues": []}
+            return {"status": "failed", "reason": "CLIENT_NOT_INITIALIZED", "issues": []}
 
-        MAX_CHUNK_SIZE = 4000
-        THRESHOLD = 8000
-
-        chunks = []
-        if len(diff) > THRESHOLD:
-            logger.info(f"[analyze_code] Diff is {len(diff)} chars, splitting into chunks")
-            chunks = [diff[i:i + MAX_CHUNK_SIZE] for i in range(0, len(diff), MAX_CHUNK_SIZE)]
-        else:
-            chunks = [diff]
-
+        chunks = self._get_line_aware_chunks(diff)
         all_issues = []
         seen_descriptions = []
 
-        for idx, chunk in enumerate(chunks):
-            result = self._analyze_chunk_with_retry(chunk)
+        any_success = False
 
-            # Merge and deduplicate using normalized matching
-            for issue in result.get("issues", []):
+        for chunk in chunks:
+            result = await self._analyze_chunk_with_retry(chunk)
+            issues = result.get("issues", [])
+
+            # If we got a result (even empty issues), it's a success for this chunk
+            if isinstance(issues, list):
+                any_success = True
+            else:
+                continue
+
+            for issue in issues:
                 desc = issue.get("description", "").strip()
-                if not desc:
+                fix = issue.get("fix", "").strip()
+
+                # Basic validation: must have desc and fix, and fix shouldn't be "no fix needed"
+                if not desc or not fix or "no fix needed" in fix.lower():
                     continue
 
                 is_duplicate = False
@@ -174,12 +160,16 @@ Code Diff:
                     seen_descriptions.append(desc)
                     all_issues.append(issue)
 
-        return {"issues": all_issues}
+        if not any_success:
+            return {"status": "failed", "reason": "AI_ANALYSIS_FAILED", "issues": []}
+
+        status = "success" if len(chunks) == 1 or any_success else "partial"
+        return {"status": status, "issues": all_issues}
 
 def get_ai_service() -> AIService:
     return AIService()
 
 _ai_service_instance = AIService()
 
-def analyze_code(diff: str) -> Dict[str, Any]:
-    return _ai_service_instance.analyze_code(diff)
+async def analyze_code(diff: str) -> Dict[str, Any]:
+    return await _ai_service_instance.analyze_code(diff)

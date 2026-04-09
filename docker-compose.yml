@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ai-reviewer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/reviews.db:/app/reviews.db
+      - ./backend/backend_log.txt:/app/backend_log.txt
+    restart: always

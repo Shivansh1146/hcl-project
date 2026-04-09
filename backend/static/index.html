@@ -684,12 +684,29 @@
         currentPR: null,
         activeTab: 'all',
         lastFeedJson: "",
-        expandedPRKey: null
+        expandedPRKey: null,
+        apiKey: localStorage.getItem('dashboard_api_key') || ""
     };
 
     async function fetchStats() {
         try {
-            const res = await fetch("/api/stats");
+            const headers = {};
+            if (state.apiKey) headers["X-API-Key"] = state.apiKey;
+
+            const res = await fetch("/api/stats", { headers });
+
+            if (res.status === 401) {
+                const key = prompt("Action Required: Enter Dashboard API Key");
+                if (key) {
+                    state.apiKey = key;
+                    localStorage.setItem('dashboard_api_key', key);
+                    fetchStats();
+                    return;
+                }
+            }
+
+            if (!res.ok) throw new Error(`API Error: ${res.status}`);
+
             const data = await res.json();
             renderStats(data);
 
@@ -756,7 +773,6 @@
         if (!reviews || reviews.length === 0) return;
 
         const root = document.getElementById('accordion-root');
-        // Store current scroll position if needed, but innerHTML replace is fast
         root.innerHTML = '';
 
         reviews.forEach((rv, idx) => {
@@ -772,29 +788,47 @@
             const riskLevel = highCount > 0 ? "High" : (medCount > 0 ? "Moderate" : "Low");
             const riskClass = riskLevel.toLowerCase();
 
+            // Status Badge Logic
+            let statusLabel = 'Review Complete';
+            let statusBadgeClass = 'badge-status';
             let insightText = "";
             let confidenceIndicator = "";
 
-            if (highCount > 0) {
-                insightText = `This PR contains <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--high);">critical security risks</span> that should be <span style="color:var(--high); font-weight:700;">fixed</span> before merging.`;
-                confidenceIndicator = "Block Merge";
-            } else if (medCount > 0) {
-                insightText = `This PR has moderate issues that require a <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--medium);">manual review</span> before proceeding.`;
-                confidenceIndicator = "Needs Review";
-            } else {
+            if (rv.status === 'error') {
+                statusLabel = 'Analysis Failed';
+                statusBadgeClass = 'badge-failed';
+                insightText = `<span style="color:var(--high); font-weight:700;">Critical failure</span> occurred during AI analysis. Review was aborted to prevent false positives.`;
+                confidenceIndicator = "System Error";
+            } else if (rv.status === 'partial') {
+                statusLabel = 'Partial Analysis';
+                statusBadgeClass = 'badge-partial';
+                insightText = `Diff was too large; analysis is <span style="color:var(--medium); font-weight:700;">incomplete</span>. Manual verification of unreviewed chunks is recommended.`;
+                confidenceIndicator = "Incomplete";
+            } else if (rv.issue_count === 0) {
+                statusLabel = 'Clean PR';
+                statusBadgeClass = 'badge-clean';
                 insightText = `No major risks detected. This PR is <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--low);">safe to merge</span>.`;
                 confidenceIndicator = "Safe to Merge";
+            } else {
+                if (highCount > 0) {
+                    insightText = `This PR contains <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--high);">critical security risks</span> that should be <span style="color:var(--high); font-weight:700;">fixed</span> before merging.`;
+                    confidenceIndicator = "Block Merge";
+                } else if (medCount > 0) {
+                    insightText = `This PR has moderate issues that require a <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--medium);">manual review</span> before proceeding.`;
+                    confidenceIndicator = "Needs Review";
+                } else {
+                    insightText = `Only minor quality improvements detected. PR is <span style="color:var(--low); font-weight:700;">likely safe</span>.`;
+                    confidenceIndicator = "Safe";
+                }
             }
 
             item.className = 'accordion-item' + (highCount > 0 ? ' has-high' : '') + (isExpanded ? ' active' : '');
-            // If it was expanded, make sure quick-findings are shown
             if (isExpanded) {
                 setTimeout(() => {
                     item.querySelectorAll('.quick-finding').forEach(f => f.classList.add('show'));
                 }, 10);
             }
 
-            // Sort issues by severity for the preview
             const sortedIssues = [...(rv.issues || [])].sort((a, b) => {
                 const order = { 'high': 0, 'medium': 1, 'low': 2, 'quality': 3 };
                 return (order[a.severity.toLowerCase()] ?? 99) - (order[b.severity.toLowerCase()] ?? 99);
@@ -818,7 +852,7 @@
                         ${medCount > 0 ? `<div class="sev-badge medium" style="padding:1px 6px;">MED ${medCount}</div>` : ''}
                         ${lowCount > 0 ? `<div class="sev-badge low" style="padding:1px 6px;">LOW ${lowCount}</div>` : ''}
                     </div>
-                    <div class="badge badge-status">Reviewed</div>
+                    <div class="badge ${statusBadgeClass}">${statusLabel}</div>
                     <div class="chevron">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
@@ -831,6 +865,7 @@
                          </div>
                     </div>
 
+                    ${rv.issue_count > 0 ? `
                     <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:1rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Categorized Findings Summary</div>
                     <div class="quick-findings-group">
                         ${sortedIssues.slice(0, 3).map((i, sIdx) => `
@@ -844,7 +879,8 @@
                         `).join('')}
                     </div>
                     ${rv.issue_count > 3 ? `<div style="text-align:center; margin-bottom:1.2rem; font-size:0.8rem; color:var(--text-muted); font-style:italic; padding-top: 0.5rem;">+ ${rv.issue_count - 3} more context-aware findings</div>` : ''}
-                     <button class="cta-button" onclick="openDetails(${JSON.stringify(rv).replace(/"/g, '&quot;')})">View Full Analysis &raquo;</button>
+                    <button class="cta-button" onclick="openDetails(${JSON.stringify(rv).replace(/"/g, '&quot;')})">View Full Analysis &raquo;</button>
+                    ` : ''}
                 </div>
             `;
             root.appendChild(item);
