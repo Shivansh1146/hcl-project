@@ -239,3 +239,7 @@ async def dashboard():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+# Dummy secret for AI verification
+DUMMY_API_KEY = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
