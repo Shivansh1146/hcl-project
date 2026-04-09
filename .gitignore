@@ -9,3 +9,6 @@ test_engine.py
 test_git.py
 test_results.txt
 backend/test_ai.py
+*.db
+*_log.txt
+.env

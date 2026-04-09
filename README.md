@@ -1,6 +1,22 @@
 # ⚡ AI-Powered Pull Request Code Review Assistant
 
-A production-grade, asynchronous code review agent that intercepts GitHub Pull Request webhooks in real-time, analyzes changed code using Groq LLaMA AI to detect security vulnerabilities and bugs, and posts inline suggested fixes directly onto the exact vulnerable lines in the PR thread.
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Groq](https://img.shields.io/badge/Groq_AI-F4AF38?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+
+A production-grade, asynchronous code review agent that intercepts GitHub Pull Request webhooks in real-time. It analyzes code using **Groq LLaMA 3.3** to detect vulnerabilities and posts **inline suggested fixes** directly to the PR thread.
+
+---
+
+## ✨ Key Features
+
+- **🚀 Real-Time Webhook Pipeline**: FastAPI `BackgroundTasks` handle induction instantly to prevent GitHub timeouts.
+- **🧠 AI-Powered Insights**: LLaMA-based analysis catches SQL injection, hardcoded secrets, and logic bugs.
+- **📊 Glassmorphism Dashboard**: Premium SaaS-style Command Center with live telemetry and spectral severity metrics.
+- **🛡️ SQLite Persistence**: Full history of reviews and issues stored persistently in `reviews.db`.
+- **🔍 Anti-Hallucination Engine**: Custom validator cross-checks AI findings against raw git diffs for near-zero false positives.
+- **✨ Decision Intelligence**: Actionable PR status (Block Merge vs. Safe) for rapid decision making.
 
 ---
 
@@ -147,19 +163,20 @@ Create `backend/.env`:
 ```env
 GROQ_API_KEY=gsk_...         # Free at console.groq.com
 GITHUB_TOKEN=github_pat_...  # Needs repo + pull_request scopes
+DASHBOARD_API_KEY=your_key   # Required for dashboard telemetry auth
 ```
 
 ### 3. Run Backend
 
 ```bash
 cd backend
-python -m uvicorn main:app --reload --port 8001
+python -m uvicorn main:app --reload --port 8000
 ```
 
 ### 4. Expose via Tunnel
 
 ```bash
-npx -y localtunnel --port 8001
+npx -y localtunnel --port 8000
 # → your url is: https://xxxx.loca.lt
 ```
 
@@ -173,6 +190,29 @@ npx -y localtunnel --port 8001
 
 ---
 
+## 🐳 Docker Deployment
+
+The AI Code Reviewer is fully containerized for production consistency and easy deployment.
+
+### 1. Build and Run
+```bash
+# Option A: Build and run with Docker Compose (Recommended)
+docker-compose up --build -d
+
+# Option B: Manual build and run
+docker build -t ai-reviewer .
+docker run -p 8000:8000 -v "${PWD}/backend/reviews.db:/app/reviews.db" ai-reviewer
+```
+
+### 2. Monitoring
+- **Dashboard**: Still accessible at `http://localhost:8000/`
+- **Logs**: View real-time container logs with `docker-compose logs -f`
+
+### 3. Persistence
+- Your `reviews.db` and logs are mounted as volumes, ensuring data survives container restarts.
+
+---
+
 ## ✅ Health Check
 
 ```bash
@@ -183,69 +223,18 @@ GET /            → dashboard UI
 
 ---
 
-## 🔥 Testing
-
-Create a branch with intentional vulnerabilities and open a PR:
-
-```python
-# test_vulnerable.py
-import sqlite3
-
-def get_user(user_id):
-    conn = sqlite3.connect("db.sqlite")
-    query = "SELECT * FROM users WHERE id=" + user_id  # SQL Injection
-    return conn.execute(query)
-
-DB_ACCESS_TOKEN = "mock-secret-abc123"  # Hardcoded secret
-password = "admin123"                    # Hardcoded password
-```
-
-The bot will detect issues across all severities (High/Medium/Low) and categories (Security/Bug/Performance/Quality), validate variable names, and post inline comments with one-click suggested fixes.
-
-For a full spectrum demonstration, use:
-```python
-# vulnerability_demo.py
-import sqlite3
-import os
-import time
-
-# [HIGH] Security: SQL Injection vulnerability
-def get_user_data(user_id):
-    conn = sqlite3.connect("users.db")
-    cursor = conn.cursor()
-    # Direct string concatenation is vulnerable to SQL injection
-    query = "SELECT * FROM users WHERE id = " + user_id
-    cursor.execute(query)
-    return cursor.fetchone()
-
-# [HIGH] Security: Hardcoded API Key
-DASHBOARD_API_KEY = "gsk_u9S3fJ8kL2m7N5p4Q1R0V8W6X4Y2Z0A1B3C5D7E9"
-
-# [MEDIUM] Bug: Potential UnboundLocalError
-def process_data(data):
-    if data:
-        result = data * 2
-    return result # Will fail if data is empty
-
-# [LOW] Performance: Inefficient processing simulation
-def main_worker():
-    items = [1, 2, 3, 4, 5]
-    for item in items:
-        time.sleep(0.1)
-        print(f"Processing {item}")
-```
-
----
-
 ## 📁 Project Structure
 
 ```
 HCL Project/
+├── Dockerfile                   # Production container config (Root context)
+├── docker-compose.yml           # Service orchestration & persistence
+├── README.md                    # Project documentation
 ├── backend/
 │   ├── main.py                  # FastAPI app — webhook pipeline + dashboard routes
 │   ├── stats_store.py           # Persistent SQLite telemetry engine
 │   ├── reviews.db               # SQLite database (Git ignored)
-│   ├── requirements.txt
+│   ├── requirements.txt         # Production dependencies (gunicorn included)
 │   ├── .env                     # API keys — never commit
 │   ├── static/
 │   │   └── index.html           # Live dashboard (Refined Glassmorphism UI)
@@ -267,6 +256,14 @@ HCL Project/
 - All API keys stored in `.env` — excluded from version control via `.gitignore`
 - Test secrets use a `mock-secret-` prefix to avoid triggering GitHub's secret scanner on non-production test values
 - GITHUB_TOKEN requires minimum `repo` scope only — no admin permissions needed
+
+---
+
+## 👤 Author
+
+**Shivansh**
+- GitHub: [Shivansh1146](https://github.com/Shivansh1146)
+- Project: [HCL Project](https://github.com/Shivansh1146/hcl-project)
 
 ---
 

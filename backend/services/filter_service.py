@@ -20,47 +20,52 @@ def get_filter_service() -> FilterService:
 def parse_and_filter_issues(analysis_result: dict) -> list:
     """Extracts and filters valid issues from AI analysis using a strict scoring system."""
     logger.info("[filter_service] Filtering issues")
-    print("🔍 RAW AI RESULT:", analysis_result)
 
     if not analysis_result or "issues" not in analysis_result:
-        print("❌ FILTER: No 'issues' key in AI result")
         return []
 
-    vague_words = ["improve", "optimize", "better", "clean"]
-
+    vague_words = ["improve", "optimize", "better", "clean", "suggest", "consider", "style"]
     valid_issues = []
+
     for issue in analysis_result.get("issues", []):
-        print(f"🔎 EVALUATING ISSUE: severity={issue.get('severity')}, desc_len={len(str(issue.get('description', '')))}")
-        if issue.get("type") and issue.get("description") and issue.get("fix"):
-            score = 0
-            severity = str(issue.get("severity", "")).lower()
-            description = str(issue.get("description", "")).lower()
+        severity = str(issue.get("severity", "")).lower()
+        description = str(issue.get("description", "")).lower()
+        fix = str(issue.get("fix", "")).lower()
 
-            # Apply Scoring Logic
-            if severity == "high":
-                score += 2
-            elif severity == "medium":
-                score += 1
-            elif severity == "low":
-                score += 1  # Give low severity a baseline pass score
+        # Rule 1: Fields must be present and non-empty
+        if not (issue.get("type") and description and fix):
+            continue
 
-            if len(description) > 30:
-                score += 1
+        # Rule 2: Contradiction Check - No "no fix needed" or empty fixes
+        if "no fix needed" in fix or "no issues" in description:
+            continue
 
-            # Only apply vague-word penalty to high/medium — low issues
-            # naturally use words like 'improve' or 'better'
-            if severity in ("high", "medium") and any(word in description for word in vague_words):
-                score -= 2
+        score = 0
+        # Rule 3: Severity-based baseline
+        if severity == "high":
+            score += 2
+        elif severity == "medium":
+            score += 1
+        elif severity == "low":
+            score += 0.5 # Low severity needs more signals to pass
 
-            print(f"   SCORE: {score} | severity={severity}")
+        # Rule 4: Descriptive Signal
+        if len(description) > 40:
+            score += 1
 
-            # Filter boundary — lowered to 0 to allow medium severity issues through
-            if score >= 0:
-                valid_issues.append(issue)
-            else:
-                print(f"   ❌ REJECTED: score={score} too low. desc={description[:40]}")
+        # Rule 5: Vague word penalty (Stricter)
+        if any(word in description for word in vague_words):
+            score -= 1.5
+
+        # Rule 6: Fix Signal - Ensure fix isn't just a comment
+        if fix.strip().startswith("#") and len(fix.splitlines()) == 1:
+            score -= 1
+
+        # Final Threshold: Must be > 0
+        if score > 0:
+            valid_issues.append(issue)
         else:
-            print(f"   ❌ REJECTED: missing required fields (type/description/fix). Issue: {issue}")
+            logger.info(f"[filter_service] REJECTED (score {score}): {description[:50]}...")
 
-    print(f"✅ FILTER PASSED: {len(valid_issues)} issues")
+    logger.info(f"✅ FILTER PASSED: {len(valid_issues)} issues")
     return valid_issues
