@@ -12,7 +12,7 @@ Use a safer alternative like json.loads() or ast.literal_eval() if possible
     # CRITICAL BUG: use of eval
     data = eval(payload)
     return data
-
+Use environment variables or a secure secrets management system
 def debug_connection():
     # BUG: Hardcoded secret key
     secret = "AI_REVIEW_TEST_KEY_999"
