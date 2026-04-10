@@ -5,7 +5,7 @@ Use subprocess.run with a list of arguments instead of string concatenation
     # CRITICAL: Command Injection
     return subprocess.getoutput("ls -la " + user_dir)
 
-def parse_config(yaml_string):
+Use yaml.safe_load() instead of yaml.load()
     # CRITICAL: Insecure YAML Unserialization
     return yaml.load(yaml_string)
 
