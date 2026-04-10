@@ -3,7 +3,12 @@ import yaml
 
 def unsafe_cmd(user_dir):
     # CRITICAL: Command Injection
-    return subprocess.getoutput("ls -la " + user_dir)
+Avoid using shell commands directly. Instead, use a safe command execution method. Replace the vulnerable code with:
+```python
+import subprocess
+
+def unsafe_cmd(user_dir):
+    return subprocess.run(['ls', '-la', user_dir], capture_output=True, text=True)
 
 def parse_config(yaml_string):
     # CRITICAL: Insecure YAML Unserialization
