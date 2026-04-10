@@ -1,6 +1,7 @@
 """
 test_vulnerable.py — Intentional bug catalogue for AI reviewer testing.
 Contains HIGH / MEDIUM / LOW severity issues across security, bugs, performance, quality.
+v2 — minor update to force fresh AI review cycle.
 """
 
 import os
