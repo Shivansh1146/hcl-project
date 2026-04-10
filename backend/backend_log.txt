@@ -2340,3 +2340,4 @@ iVBORw0KGgoAAAANSUhEUgAAAZAAAAGZCAMAAACQbpc2AAADAFBMVEWEBz6FAD6FAD6GAD+MAEGOAEOK
 2026-04-10 21:25:32,223 - services.filter_service - INFO - [filter_service] Filtering issues
 2026-04-10 21:25:32,231 - backend - INFO - SHA 99f62d5ebbc8c87ab851eb76cb0f826ebb935930 marked as completed
 2026-04-10 21:25:32,234 - backend - INFO - [Webhook Summary] repo=Shivansh1146/HCL-Project pr=37 sha=99f62d5ebbc8c87ab851eb76cb0f826ebb935930 result=completed issues=0 comments=0
+2026-04-10 21:27:42,084 - backend - INFO - Database initialized (Persistent Mode)
