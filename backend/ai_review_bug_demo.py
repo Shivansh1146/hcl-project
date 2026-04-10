@@ -13,3 +13,10 @@ def parse_amount(text):
 def get_user_name(payload):
     # Bug: typo key causes KeyError for valid payloads.
     return payload["usre"]["name"]
+
+
+def has_access(role):
+    # Bug: assignment in condition returns truthy path unexpectedly.
+    if role == "admin" or "owner":
+        return True
+    return False
