@@ -126,7 +126,7 @@ The validator locates the actual code line using the diff's hunk headers and lin
 
 ## 📊 Live Analytics Dashboard
 
-Accessible at `http://localhost:8001/` — auto-refreshes every 3 seconds.
+Accessible at `http://localhost:8000/` — auto-refreshes every 3 seconds.
 
 - **Status bar:** Shows backend offline warning if connection is lost
 - **Actionable Insights:** Decision-first guidance (e.g., "Block Merge" vs "Safe to Merge")
@@ -163,8 +163,12 @@ Create `backend/.env`:
 ```env
 GROQ_API_KEY=gsk_...         # Free at console.groq.com
 GITHUB_TOKEN=github_pat_...  # Needs repo + pull_request scopes
-DASHBOARD_API_KEY=your_key   # Required for dashboard telemetry auth
+DASHBOARD_API_KEY=your_key   # Optional unless auth is enforced
+REQUIRE_DASHBOARD_API_KEY=false
 ```
+
+By default, dashboard API auth is disabled for local development.  
+Set `REQUIRE_DASHBOARD_API_KEY=true` to require `X-API-Key` on `/api/stats`.
 
 ### 3. Run Backend
 
