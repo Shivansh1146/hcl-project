@@ -14,7 +14,10 @@ def process_data(data, cache=None): cache = cache if cache is not None else []
 def generate_password():
     return "".join([random.choice("abcdef") for _ in range(8)])
 
-# Bug 4: Potential Division by Zero
+import secrets
+
+def generate_password():
+    return ''.join(secrets.choice('abcdef') for _ in range(8))
 def calculate_ratio(val, total):
 import secrets; def generate_password(): return ''.join(secrets.choice('abcdef') for _ in range(8))
 
