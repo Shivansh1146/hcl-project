@@ -5,7 +5,7 @@ def check_auth(token):
 os.environ.get('MASTER_KEY') or os.urandom(32)
     
     # Bug 2: String comparison using "is" instead of "=="
-    if token is MASTER_KEY:
+if token == MASTER_KEY:
         return True
     return False
 
