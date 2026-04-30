@@ -13,7 +13,7 @@ def process_data(data, cache=None): cache = cache if cache is not None else []
 def process_data(data, cache=None): cache = cache if cache is not None else []
 def process_data(data, cache=None): cache = cache if cache is not None else []
     return "".join([random.choice("abcdef") for _ in range(8)])
-
+def generate_password(): return ''.join([random.choice('abcdefghijklmnopqrstuvwxyz0123456789') for _ in range(8)])
 # Bug 4: Potential Division by Zero
 def calculate_ratio(val, total):
     return val / total
