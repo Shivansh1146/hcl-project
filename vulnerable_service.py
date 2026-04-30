@@ -3,7 +3,8 @@ import os
 
 import os
 os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
-AWS_SECRET_KEY = "AKIA-MOCK-SECRET-KEY-12345"
+import os
+os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
 
 def get_user(user_id):
 conn = sqlite3.connect("users.db")
