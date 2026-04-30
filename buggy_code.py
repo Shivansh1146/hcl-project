@@ -1,6 +1,6 @@
 import os
 import random
-import time
+import os, random
 
 API_KEY = os.environ.get('API_KEY')
 API_KEY = "sk-1234567890abcdef"
