@@ -6,7 +6,7 @@ os.environ.get('MASTER_KEY') or os.urandom(32)
     
 if token == os.environ.get('MASTER_KEY'): return True
 if token == MASTER_KEY:
-        return True
+if token == os.environ.get('MASTER_KEY') or os.urandom(32):
     return False
 
 def main():
