@@ -38,7 +38,8 @@ A key feature is its deep GitHub integration: the system posts inline review com
 | Integration | GitHub REST API v3 (Webhooks + Inline Comments) |
 | Persistence | SQLite (`reviews.db`) — stores history across restarts |
 | Dashboard | Glassmorphism UI + **Decision Intelligence** (Actionable Guidance) |
-| Tunneling | `localtunnel` (development) |
+| Tunneling | `ngrok` (Recommended) or `localtunnel` |
+
 
 ---
 
@@ -188,18 +189,21 @@ python -m uvicorn main:app --reload --port 8001
 
 ```
 
-### 4. Expose via Tunnel
+### 4. Expose via Tunnel (Recommended: ngrok)
 
 ```bash
-npx -y localtunnel --port 8001
+# Option A: ngrok (Stable)
+ngrok http 8001
 
-# → your url is: https://xxxx.loca.lt
+# Option B: localtunnel
+npx -y localtunnel --port 8001
 ```
 
 ### 5. Configure GitHub Webhook
 
 1. Go to your GitHub repo → **Settings** → **Webhooks** → **Add webhook**
-2. **Payload URL:** `https://xxxx.loca.lt/webhook`
+2. **Payload URL:** `https://your-tunnel-url.ngrok-free.app/webhook`
+
 3. **Content type:** `application/json`
 4. **Events:** Select **Pull requests** only
 5. Click **Save**
@@ -249,7 +253,10 @@ HCL Project/
 ├── docker-compose.yml           # Service orchestration & persistence
 ├── README.md                    # Project documentation
 ├── vulnerable_verification.py   # Intentionally vulnerable code for testing
+├── buggy_code.py                # Test file with 5 diverse bugs
+├── single_bug.py                # Minimal test case with 1 security bug
 ├── send_webhook.py              # Utility to trigger webhook manually
+
 ├── backend/
 │   ├── main.py                  # FastAPI app — webhook pipeline + dashboard routes
 │   ├── stats_store.py           # Persistent SQLite telemetry engine
@@ -324,12 +331,20 @@ npx -y localtunnel --port 8001
 Then set GitHub Webhook **Payload URL** to:
 - `https://<your-url>.loca.lt/webhook`
 
-### 1. AI Integration Test
+### 1. AI Integration Test (5-Bug & 1-Bug cases)
 Verify that the Groq AI service is correctly analyzing diffs and returning JSON issues.
 ```bash
+# Test 5 diverse bugs
+python buggy_code.py
+
+# Test 1 security bug
+python single_bug.py
+
+# Internal integration logic test
 cd backend
 python test_ai.py
 ```
+
 
 ### 2. Security Vulnerability Test
 An intentionally vulnerable script is provided to verify the AI's detection capabilities (SQLi, Command Injection, etc.).
@@ -340,9 +355,10 @@ python vulnerable_verification.py
 ### 3. Webhook Simulation
 Trigger a manual webhook event to test the full pipeline (Induction → Analysis → Response).
 ```bash
-# Ensure localtunnel and backend are running first
+# Ensure ngrok/localtunnel and backend are running first
 python send_webhook.py
 ```
+
 
 ---
 
