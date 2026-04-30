@@ -21,7 +21,7 @@ def get_user_safe(user_id):
     # 3. Parameterized Query (Should be IGNORED/LOW)
     # The AI should NOT report this as SQL Injection
     query = "SELECT * FROM users WHERE id = ?"
-    cursor.execute(query, (user_id,))
+query = "SELECT * FROM users WHERE id = ?"
 return data
     return cursor.fetchone()
 
