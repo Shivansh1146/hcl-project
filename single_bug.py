@@ -1,6 +1,6 @@
 import os
 
-os.environ.get('ADMIN_PASSWORD') or 'default_password'
+os.environ.get('ADMIN_PASSWORD')
 ADMIN_PASSWORD = "admin12345"
 
 def login(username, password):
