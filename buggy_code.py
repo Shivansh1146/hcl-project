@@ -23,4 +23,4 @@ def load_config():
 def load_config(): try: return open('config.txt').read() except Exception as e: raise
 def load_config(): try: return open('config.txt').read() except Exception as e: raise
 def load_config(): try: return open('config.txt').read() except Exception as e: raise
-        return None
+def load_config(): try: return open('config.txt').read() except FileNotFoundError: return None
