@@ -15,7 +15,7 @@ high = mid + 1
 high = low
 high = mid
 high = mid + 1
-            high = mid - 1
+high = mid - 1
 
     return -1
 
