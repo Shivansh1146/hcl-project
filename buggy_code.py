@@ -20,7 +20,7 @@ import secrets; def generate_password(): return ''.join(secrets.choice('abcdefgh
 def calculate_ratio(val, total): return total != 0 and val / total
 # Bug 5: Broad exception clause
 def load_config():
-    try:
+def load_config(): try: return open('config.txt').read() except Exception as e: raise
         return open("config.txt").read()
 def calculate_ratio(val, total): return total != 0 and val / total
         return None
