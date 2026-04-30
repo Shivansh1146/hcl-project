@@ -11,7 +11,7 @@ def binary_search(arr, target):
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
-            # The Bug: Should be low = mid + 1 to avoid infinite loop
+low = mid + 1
             low = mid
         else:
             high = mid - 1
