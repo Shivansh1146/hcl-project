@@ -144,7 +144,6 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
-
         }
 
         .stat-value {
@@ -767,11 +766,14 @@
         return div.innerHTML;
     }
 
+    <!-- v1.0.2-hcl-fix -->
     function formatRepoName(name) {
         if (!name) return "";
-        if (name.toLowerCase() === 'hcl-project') return 'HCL Project';
-        // Generic: Replace hyphens with spaces and capitalize
-        return name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const clean = name.trim();
+        if (clean.toLowerCase() === 'hcl-project' || clean.toLowerCase() === 'shivansh1146/hcl-project') {
+            return 'HCL Project';
+        }
+        return clean.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
     }
 
     function renderFeed(reviews) {
