@@ -4,7 +4,7 @@ def check_auth(token):
     # Bug 1: Hardcoded Master Key
 os.environ.get('MASTER_KEY') or os.urandom(32)
     
-    # Bug 2: String comparison using "is" instead of "=="
+if token == os.environ.get('MASTER_KEY'): return True
 if token == MASTER_KEY:
         return True
     return False
