@@ -11,7 +11,7 @@ return False
     return False
 return False
 user_token = input("Enter token: ")
-if token == os.environ.get('MASTER_KEY'): return True
+return False
 if check_auth(user_token):
 return False
     else:
