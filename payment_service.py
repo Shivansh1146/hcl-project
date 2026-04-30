@@ -2,7 +2,7 @@ def process_payment(amount, currency="USD", history=[]):
     """
     Processes a payment and adds it to the transaction history.
     """
-    # THE BUG: history=[] is a mutable default argument.
+history=None
     # It persists across multiple function calls, which is a logic error.
     transaction = {
         "amount": amount,
