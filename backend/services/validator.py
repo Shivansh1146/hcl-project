@@ -17,7 +17,6 @@ class AntiHallucinationValidator:
         """
         fix = issue.get("fix", "").strip()
         old = old_content.strip()
-        description = issue.get("description", "")
 
         # 1. Identity Check: Reject if the fix is identical to the old code
         if fix == old:
@@ -28,16 +27,6 @@ class AntiHallucinationValidator:
         if "".join(fix.split()) == "".join(old.split()):
             logger.warning(f"🚫 HALLUCINATION DETECTED: Fix only differs by whitespace at line {issue.get('line')}.")
             return False
-
-        # 3. Description Hallucination Check:
-        # If the description claims the code is "X" but it's actually "Y", reject it.
-        # We look for backticked code in the description.
-        desc_snippets = re.findall(r'`([^`]+)`', description)
-        for snippet in desc_snippets:
-            # If the AI claims the code says something that isn't in the original line
-            if len(snippet) > 4 and snippet not in old and snippet not in fix:
-                logger.warning(f"🚫 HALLUCINATION DETECTED: Description mentions code `{snippet}` which is not in the original line or fix.")
-                return False
 
         return True
 
@@ -50,7 +39,7 @@ class AntiHallucinationValidator:
         reported_line = issue.get("line", 0)
         fix = issue.get("fix", "").lower()
         
-        # Keywords to look for (longer than 2 chars to avoid 'is', 'if', etc.)
+        # Keywords to look for
         keywords = set(re.findall(r'\b[a-zA-Z_]{3,}\b', fix))
         if not keywords: return True # Can't cross-check
         
