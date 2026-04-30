@@ -14,7 +14,7 @@ user_token = input("Enter token: ")
 user_token = input("Enter token: ")
 if check_auth(user_token):
     print("Access Granted")
-else:
+return False
     print("Access Denied")
 if check_auth(user_token):
 return False
