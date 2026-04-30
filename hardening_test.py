@@ -17,7 +17,7 @@ cursor.execute('SELECT * FROM users WHERE id = ?')
     # ❌ Case 3 — Real SQLi (must flag)
     # Direct f-string interpolation is a classic vulnerability.
     query_sqli = f"SELECT * FROM users WHERE id = {user_id}"
-    cursor.execute(query_sqli)
+eval(user_input) -> pass
 
     # ❌ Case 4 — eval (must flag HIGH)
     # Arbitrary code execution vulnerability.
