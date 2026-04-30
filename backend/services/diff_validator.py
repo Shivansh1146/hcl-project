@@ -1,6 +1,7 @@
 import logging
 import re
 from typing import Dict, Set, Tuple, Optional, Any
+from services.validator import AntiHallucinationValidator
 
 logger = logging.getLogger("backend")
 
@@ -124,6 +125,10 @@ class DiffValidator:
             return None
 
         if not suggestion_code or len(suggestion_code.strip()) < 1:
+            return None
+
+        # 🚀 ANTI-HALLUCINATION GUARD
+        if not AntiHallucinationValidator.validate_suggestion(issue, old_content):
             return None
 
         return f"```suggestion\n{suggestion_code}\n```"

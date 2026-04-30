@@ -11,6 +11,7 @@ from services.ai_service import get_ai_service
 from services.diff_validator import DiffValidator
 from services.syntax_validator import SyntaxValidator
 from services.filter_service import parse_and_filter_issues
+from services.validator import AntiHallucinationValidator
 from stats_store import initialize_db, get_stats, record_review, finalize_review, claim_sha_for_processing, is_sha_processed, mark_sha_status, upsert_review
 import stats_store
 
@@ -159,6 +160,9 @@ async def process_webhook(payload: dict):
                         if issue_fingerprint in seen_issues:
                             continue
                         seen_issues.add(issue_fingerprint)
+                        
+                        # 🔍 Auto-Correct line mapping before validation
+                        AntiHallucinationValidator.auto_correct_line_mapping(i, diff_mapping.get(i.get("file", ""), {}))
 
                         if line_num > 0:
                             # Inline issue: MUST be in the diff mapping

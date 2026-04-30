@@ -21,13 +21,23 @@ class AIService:
             self.client = AsyncGroq(api_key=self.api_key)
 
     def _is_similar(self, issue1: Dict[str, Any], issue2: Dict[str, Any]) -> bool:
-        """Normalizes descriptions and performs semantic similarity matching.
-        Ensures issues on different lines/files are NEVER marked as duplicates."""
-        
-        # Exact line/file check prevents dropping valid identical bugs in different locations
-        if issue1.get("file") != issue2.get("file") or issue1.get("line") != issue2.get("line"):
+        """
+        Normalizes descriptions and performs semantic similarity matching.
+        HARDENING: Allows deduplication on nearby lines (within 3 lines) if description matches.
+        """
+        # File must be the same
+        if issue1.get("file") != issue2.get("file"):
             return False
             
+        # Line distance check: If lines are > 3 apart, assume different issues
+        try:
+            line1 = int(issue1.get("line", 0))
+            line2 = int(issue2.get("line", 0))
+            if abs(line1 - line2) > 3:
+                return False
+        except (ValueError, TypeError):
+            return False
+
         def normalize(t: str) -> str:
             t = t.lower()
             return t.translate(str.maketrans('', '', string.punctuation)).strip()
@@ -57,7 +67,11 @@ class AIService:
         union = words1.union(words2)
 
         score = len(intersection) / len(union)
-        return score > 0.6 # Stricter threshold
+        
+        # If lines are identical, threshold is 0.6. 
+        # If lines are different (but nearby), threshold is 0.8 (higher bar for dedup)
+        threshold = 0.6 if line1 == line2 else 0.8
+        return score >= threshold
 
     def _is_structurally_valid(self, issue: Dict[str, Any]) -> bool:
         """Strict schema enforcement to prevent 'garbage' data from malformed AI blocks."""
