@@ -50,11 +50,10 @@ def compute_decision(high, medium, low, total_chunks, processed_chunks, error=Fa
     # Confidence/Coverage Level
     confidence = processed_chunks / total_chunks if total_chunks > 0 else 1.0
 
-    # HONESTY: Absolute rule - partial analysis is NEVER "SAFE"
+    # HONESTY: Absolute rule - partial analysis is NEVER "SAFE" (Requirement 5)
     if processed_chunks < total_chunks:
-        if confidence < 0.7 or total_chunks > 10:
-            return "ANALYSIS_INCOMPLETE"
         return "REVIEW_REQUIRED"
+
 
     # Fully analyzed logic
     if medium >= 3:
@@ -140,7 +139,8 @@ async def process_webhook(payload: dict):
                     raw_issues = analysis.get("issues", [])
                     diff_mapping = DiffValidator.parse_diff_mapping(diff)
 
-                    # Step 5 — Syntax check & Split Logic (Global vs Inline)
+                    # Step 5 — Syntax check, Deduplication & Split Logic (Requirement 7)
+                    seen_issues = set()
                     for i in raw_issues:
                         # Architecture Check: Distinguish Global vs Inline issues
                         try:
@@ -149,6 +149,12 @@ async def process_webhook(payload: dict):
                             line_num = 0
 
                         i["line"] = line_num # ensure int
+                        
+                        # Deduplication logic: file + line + description hash
+                        issue_fingerprint = f"{i.get('file')}:{line_num}:{i.get('description')}"
+                        if issue_fingerprint in seen_issues:
+                            continue
+                        seen_issues.add(issue_fingerprint)
 
                         if line_num > 0:
                             # Inline issue: MUST be in the diff mapping
@@ -164,6 +170,7 @@ async def process_webhook(payload: dict):
                             i["description"] = f"[NEEDS REVIEW: SUGGESTION SYNTAX ERR] {i.get('description', '')}"
 
                         valid_issues.append(i)
+
 
                     high_count = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "high")
                     med_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "medium")
