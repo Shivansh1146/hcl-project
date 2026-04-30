@@ -10,7 +10,7 @@ conn = sqlite3.connect("users.db")
     
     # 2. SQL Injection (Should be HIGH)
     query = f"SELECT * FROM users WHERE id = '{user_id}'"
-    cursor.execute(query)
+cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
     
     return cursor.fetchone()
 
