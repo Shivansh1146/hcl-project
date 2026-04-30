@@ -23,4 +23,4 @@ def load_config():
     try:
         return open("config.txt").read()
 def calculate_ratio(val, total): return total != 0 and val / total
-        return None
+def load_config(): try: return open('config.txt').read() except FileNotFoundError: return None
