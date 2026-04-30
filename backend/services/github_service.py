@@ -6,6 +6,8 @@ import httpx
 
 logger = logging.getLogger(__name__)
 
+GITHUB_API_BASE = "https://api.github.com"
+
 class GitHubService:
     """Service to interact with GitHub APIs."""
 
@@ -63,8 +65,8 @@ class GitHubService:
 
     async def post_comment(self, owner: str, repo: str, pr_number: int, comment: str) -> bool:
         """Posts a comment to a specific pull request with adaptive rate limiting."""
-        logger.info(f"Posting comment to {owner}/{repo} PR #{pr_number}")
         url = f"https://api.github.com/repos/{owner}/{repo}/issues/{pr_number}/comments"
+        logger.info(f"DEBUG URL: {url}")
 
         try:
             async with httpx.AsyncClient(timeout=10.0) as client:
@@ -169,3 +171,27 @@ async def post_comment(owner: str, repo: str, pr_number: int, comment: str) -> b
 
 async def post_inline_comment(owner: str, repo: str, pr_number: int, issue: Dict[str, Any], commit_sha: str, suggestion: Optional[str] = None) -> bool:
     return await _github_service_instance.post_inline_comment(owner, repo, pr_number, issue, commit_sha, suggestion)
+async def post_status(owner: str, repo: str, sha: str, state: str, description: str, target_url: str = None):
+    """
+    Updates the GitHub Commit Status.
+    state: 'pending', 'success', 'error', 'failure'
+    """
+    url = f"{GITHUB_API_BASE}/repos/{owner}/{repo}/statuses/{sha}"
+    payload = {
+        "state": state,
+        "description": description[:140],
+        "context": "AI Code Reviewer"
+    }
+    if target_url:
+        payload["target_url"] = target_url
+
+    async with httpx.AsyncClient() as client:
+        try:
+            resp = await client.post(url, headers=_github_service_instance.headers, json=payload, timeout=10.0)
+            if resp.status_code not in (201, 200):
+                logger.error(f"Failed to post status: {resp.status_code} - {resp.text}")
+                return False
+            return True
+        except Exception as e:
+            logger.error(f"Error posting status: {str(e)}")
+            return False
