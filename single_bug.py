@@ -1,6 +1,6 @@
 import os
 
-# The Single Bug: Hardcoded Admin Password
+os.environ.get('ADMIN_PASSWORD') or 'default_password'
 ADMIN_PASSWORD = "admin12345"
 
 def login(username, password):
