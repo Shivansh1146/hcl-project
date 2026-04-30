@@ -95,6 +95,7 @@ class GitHubService:
 
         severity = issue.get("severity", "medium").upper()
         description = issue.get("description", "")
+        impact = issue.get("impact", "No technical impact specified.")
         file_path = issue.get("file", "")
 
         try:
@@ -102,22 +103,19 @@ class GitHubService:
         except (ValueError, TypeError):
             line = 1
 
-        # Build comment body with optional suggestion
-        comment_body = f"""**🤖 AI Code Review ({severity})**
+        # Build comment body to trigger GitHub Suggested Changes UI
+        comment_body = f"""🔍 AI Review ({severity})
 
-## 📋 Issue
+**Problem:**
 {description}
-"""
-        if suggestion:
-            comment_body += f"""
-## 🔧 Suggested Fix
-{suggestion}
 
----
-*💡 Click 'Commit suggestion' to apply this fix automatically*
-"""
+**Impact:**
+{impact}
 
-        comment_body += f"\n**Severity:** {severity} | **File:** `{file_path}` | **Line:** {line}"
+**Fix:**
+
+{suggestion if suggestion else "*No automated fix available for this logic.*"}
+"""
 
         payload = {
             "body": comment_body,

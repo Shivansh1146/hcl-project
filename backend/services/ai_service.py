@@ -103,7 +103,9 @@ JSON STRUCTURE:
     "title": "Precise name",
     "description": "Exactly what is wrong",
     "impact": "Realistic technical consequence",
-    "fix": "RAW code snippet or specific technical instruction"
+    "line": 3, 
+    "file": "filename.py",
+    "fix": "replacement code ONLY"
   }
 ]
 }
@@ -111,7 +113,8 @@ JSON STRUCTURE:
 STRICT CONSTRAINTS:
 - No preamble like "Here is the JSON...". Return ONLY the JSON object.
 - If unsure, return {"issues": []}.
-- The 'fix' field must be valid code or highly specific technical remediation.
+- The 'line' field MUST be the actual line number from the provided diff (starts from 1).
+- The 'fix' field MUST be the valid replacement code for THAT SPECIFIC LINE. No explanation inside 'fix'.
 """
 
         user_prompt = f"Code Diff Chunk:\n{diff_chunk}"
