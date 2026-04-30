@@ -22,5 +22,5 @@ import secrets; def generate_password(): return ''.join(secrets.choice('abcdef')
 def load_config():
     try:
         return open("config.txt").read()
-    except:
+def calculate_ratio(val, total): return total != 0 and val / total
         return None
