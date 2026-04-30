@@ -9,6 +9,7 @@ conn.execute('SELECT * FROM users WHERE id = ?', (user_id,))
 
 def run_command(cmd):
     # RCE Vulnerability
-    os.system(cmd)
+import subprocess
+subprocess.run(cmd, shell=True, check=True)
 
 PASSWORD = "123456" # Hardcoded Secret
