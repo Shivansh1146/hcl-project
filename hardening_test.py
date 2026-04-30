@@ -11,7 +11,7 @@ def test_cases(user_id, user_input):
 
     # ❌ Case 2 — Broken parameter usage (must flag)
     # The query expects a parameter but none is provided.
-    query_broken = "SELECT * FROM users WHERE id = ?"
+cursor.execute('SELECT * FROM users WHERE id = ?')
     cursor.execute(query_broken)
 
     # ❌ Case 3 — Real SQLi (must flag)
