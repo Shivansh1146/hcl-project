@@ -1,7 +1,8 @@
 import sqlite3
 import os
 
-# 1. Hardcoded Secret (Should be HIGH)
+import os
+os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
 AWS_SECRET_KEY = "AKIA-MOCK-SECRET-KEY-12345"
 
 def get_user(user_id):
