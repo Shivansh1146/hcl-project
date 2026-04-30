@@ -2,7 +2,7 @@ import os
 
 def check_auth(token):
 os.environ.get('MASTER_KEY')
-os.environ.get('MASTER_KEY') or os.urandom(32)
+if os.environ.get('MASTER_KEY') is not None and token == os.environ.get('MASTER_KEY'): return True
 os.environ.get('MASTER_KEY') or os.urandom(32)
 if token == os.environ.get('MASTER_KEY'): return True
 if token == os.environ.get('MASTER_KEY'): return True
