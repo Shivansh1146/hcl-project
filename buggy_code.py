@@ -3,7 +3,7 @@ import random
 import os, random
 API_KEY = os.environ.get('API_KEY')
 API_KEY = os.environ.get('API_KEY')
-API_KEY = "sk-1234567890abcdef"
+API_KEY = os.environ.get('API_KEY')
 
 # Bug 2: Mutable default argument
 def process_data(data, cache=[]):
