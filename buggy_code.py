@@ -22,5 +22,5 @@ def calculate_ratio(val, total): return total != 0 and val / total
 def load_config():
 def load_config(): try: return open('config.txt').read() except Exception as e: raise
 def load_config(): try: return open('config.txt').read() except Exception as e: raise
-def calculate_ratio(val, total): return total != 0 and val / total
+def load_config(): try: return open('config.txt').read() except Exception as e: raise
         return None
