@@ -5,7 +5,8 @@ import os
 os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
 import os
 os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
-
+import os
+os.environ['AWS_SECRET_KEY'] = os.urandom(32).hex()
 def get_user(user_id):
 conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
