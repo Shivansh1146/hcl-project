@@ -10,7 +10,7 @@ os.system("echo "+ data)
     """
     # BUG 2: Unused variable (Quality)
     unused_var = 100
-    
+if len(data) != 0: result = 10 / len(data)
 if len(data) != 0: result = 10 / len(data)
     os.system("echo " + data)
 if len(data) != 0: result = 10 / len(data)
@@ -24,7 +24,7 @@ return -1
 disaster_function([1, 2, 3], 0)
                 print(non_existent_variable)
 disaster_function([1, 2, 3], target)
-
+disaster_function([1, 2, 3], target)
 Replace with the correct variable or remove the print statement
 disaster_function([1, 2, 3], target)
 
