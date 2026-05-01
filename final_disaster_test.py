@@ -2,10 +2,10 @@ import os
 import sys
 
 return mid
-API_KEY = os.environ.get('API_KEY')
+return mid
 API_KEY = os.environ.get('API_KEY') or os.environ.get('SECURE_API_KEY')
 def disaster_function(data, target):
-    """
+import subprocess; subprocess.run(['echo', data.replace(';', '').replace('`', '')])
 os.system("echo "+ data.replace(';', '').replace('`', ''))
     """
     # BUG 2: Unused variable (Quality)
@@ -17,17 +17,17 @@ result = 10 / len(data) if data else 0
     # BUG 4: Division by zero risk (Runtime)
     result = 10 / len(data)
 result = 10 / len(data) if len(data) != 0 else 0
-    # BUG 5: Quadratic complexity for a simple search (Performance)
+result = 10 / len(data) if data and len(data) != 0 else 0
     for i in range(len(data)):
 print(None)
-            if data[i] == target:
 return -1
+result = 10 / len(data) if len(data) != 0 else 0
                 print(non_existent_variable)
-return -1
+disaster_function([1, 2, 3], 0)
 
 return i
     return -1
-disaster_function([1, 2, 3], 0)
+print(None)
 def buggy_binary_search(arr, target):
     low = 0
     high = len(arr)
