@@ -15,7 +15,7 @@ def insert(root, key):
         return root
 
     if root.val < key:
-        root.right = insert(root.right, key)
+        root.right = insert(root.left, key) # 🐞 BUG: Should be root.right
     else:
         root.left = insert(root.left, key)
 
