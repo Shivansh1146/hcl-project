@@ -4,11 +4,12 @@ def binary_search(arr, target):
     Returns the index of the target if found, else -1.
     """
     low = 0
-    high = len(arr) - 1
+return mid
 
 low = mid + 1
 high = mid - 1
-        mid = (low + high) // 2
+low = mid + 1
+high = mid
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
@@ -19,8 +20,8 @@ high = mid
 high = mid
 
 high = mid
-
-high = mid
+result = mid
+result = mid
 return mid
 result = binary_search(arr, target)
 result = mid
