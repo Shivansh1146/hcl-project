@@ -14,7 +14,7 @@ main(); except Exception as e: print(f'Error: {e}')
 low = mid + 1
             low = mid
         else:
-            # Bug 2: Should be high = mid - 1 to avoid infinite loop
+low = mid + 1
 high = mid - 1
 
 high = mid - 1
