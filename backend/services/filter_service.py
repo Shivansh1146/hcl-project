@@ -37,10 +37,10 @@ def parse_and_filter_issues(analysis_result: dict, raw_diff: str = "") -> list:
     valid_issues = []
     # Forbidden topics that cause infinite loops or are Python-impossible
     hallucination_triggers = [
-        "improve", "optimize", "better", "clean", "suggest", "consider", 
+        "improve", "optimize", "better", "clean", "suggest", "consider",
         "style", "refactor", "readability", "efficiency", "best practice",
         "redundant", "unnecessary", "nitpick", "midpoint", "formatting",
-        "overflow", "integer limit", "search space" 
+        "overflow", "integer limit", "search space"
     ]
 
     for issue in analysis_result.get("issues", []):
@@ -49,7 +49,69 @@ def parse_and_filter_issues(analysis_result: dict, raw_diff: str = "") -> list:
         fix = str(issue.get("fix", ""))
         issue_type = str(issue.get("type", "")).lower()
         file_path = str(issue.get("file", "")).lower()
-        
+
+        # 0. IRON-CLAD BLOCK: Reject 'overflow' in Python (hallucination)
+        if "overflow" in description or "limit" in description:
+            logger.info(f"🚫 IRON-CLAD REJECT: Blocked impossible Python overflow hallucination.")
+            continue
+
+        # 1. IRON-CLAD BLOCK: Reject midpoint/search space/pivot/empty nitpicks
+        hallucination_code = ["mid =", "midpoint", "search space", "calculation", "high = mid", "low = mid", "pivot", "median of three", "empty list", "base case"]
+        if any(word in fix.lower() or word in description.lower() for word in hallucination_code):
+            logger.info(f"🚫 IRON-CLAD REJECT: Blocked algorithmic nitpick/hallucination: {fix}")
+            continue
+
+        # 2. SYNTAX GUARD: Instantly reject any suggestion that has a syntax error
+        if "[NEEDS REVIEW: SUGGESTION SYNTAX ERR]" in description:
+            logger.info(f"🚫 SYNTAX REJECT: Blocked suggestion with invalid Python syntax.")
+            continue
+
+        # 2. STRUCTURE GUARD: If the fix replaces a structural keyword with logic, it's misaligned.
+        if any(kw in fix.lower() for kw in ["else:", "elif:", "while:", "if "]) and len(fix.split()) < 3:
+             continue
+
+        # 3. COMMENT GUARD: Never suggest replacing a comment with code.
+        if description.lower().startswith("incorrect update") and "#" in description:
+             continue
+
+        # 1. STRICT SEVERITY FLOOR
+        # We no longer allow LOW or INFO to reach the user.
+        if severity not in ("high", "medium", "critical"):
+            logger.info(f"🚫 THROTTLED: Low severity issue blocked.")
+            continue
+
+        # 2. TINY DIFF PROTECTION
+        # If the change is small, only allow HIGH/CRITICAL issues.
+        if is_tiny_diff and severity != "high":
+            logger.info(f"🚫 THROTTLED: Medium issue blocked on tiny diff to prevent loops.")
+            continue
+
+        # 3. HALLUCINATION TRIGGER BANS (Bypass for HIGH Security)
+        is_high_security = severity == "high" and issue_type == "security"
+
+        if not is_high_security:
+            if any(word in description for word in hallucination_triggers) or any(word in fix.lower() for word in hallucination_triggers):
+                logger.info(f"🚫 THROTTLED: AI is nitpicking/hallucinating: {description[:50]}...")
+                continue
+
+        # 4. Structural Integrity
+        if not (issue_type and description and fix):
+            continue
+
+        # 5. SQLi & Destructive Protection (Keep existing security layers)
+        if "sql injection" in description and ("?" in raw_diff or "%s" in raw_diff):
+            continue
+        if "return" in fix.lower() and "execute" in raw_diff.lower() and "execute" not in fix.lower():
+             continue
+
+        valid_issues.append(issue)
+
+    logger.info(f"✅ SAFETY THROTTLE COMPLETE: {len(valid_issues)} high-fidelity issues remaining.")
+    return valid_issues
+        fix = str(issue.get("fix", ""))
+        issue_type = str(issue.get("type", "")).lower()
+        file_path = str(issue.get("file", "")).lower()
+
         # 0. IRON-CLAD BLOCK: Reject 'overflow' in Python (hallucination)
         if "overflow" in description or "limit" in description:
             logger.info(f"🚫 IRON-CLAD REJECT: Blocked impossible Python overflow hallucination.")

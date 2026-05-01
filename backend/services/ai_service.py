@@ -28,7 +28,7 @@ class AIService:
         # File must be the same
         if issue1.get("file") != issue2.get("file"):
             return False
-            
+
         # Line distance check: If lines are > 3 apart, assume different issues
         try:
             line1 = int(issue1.get("line", 0))
@@ -47,7 +47,7 @@ class AIService:
 
         if not norm1 or not norm2:
             return False
-            
+
         # Hardening: If description is too short, avoid semantic dedup to prevent generic collisions
         if len(norm1) < 20 or len(norm2) < 20:
             return norm1 == norm2
@@ -67,8 +67,8 @@ class AIService:
         union = words1.union(words2)
 
         score = len(intersection) / len(union)
-        
-        # If lines are identical, threshold is 0.6. 
+
+        # If lines are identical, threshold is 0.6.
         # If lines are different (but nearby), threshold is 0.8 (higher bar for dedup)
         threshold = 0.6 if line1 == line2 else 0.8
         return score >= threshold
@@ -77,23 +77,23 @@ class AIService:
         """Strict schema enforcement to prevent 'garbage' data from malformed AI blocks."""
         if not isinstance(issue, dict):
             return False
-            
+
         required_keys = {"severity", "type", "title", "description", "fix"}
         for key in required_keys:
             val = issue.get(key)
             if not isinstance(val, str) or not val.strip():
                 return False
-            
+
         # Strict enum check
         if issue["severity"].upper() not in {"HIGH", "MEDIUM", "LOW"}:
             return False
-            
+
         return True
 
     async def _analyze_chunk_with_retry(self, diff_chunk: str) -> Optional[Dict[str, Any]]:
         """Sends a single diff chunk to Groq with retry logic and JSON validation."""
         system_prompt = """
-You are a deterministic code reviewer. Your goal is stability and accuracy, not completeness.
+You are a deterministic security-first code reviewer. Your goal is stability and high-fidelity bug detection.
 
 Rules:
 
@@ -103,14 +103,14 @@ Rules:
 4) If the code is correct or sufficiently safe, return exactly: {"issues": []}
 5) DO NOT suggest improvements, optimizations, or style changes.
 6) DO NOT modify or replace comments, docstrings (\"\"\" or '''), or structural keywords (def, class, return, if, else, while).
-7) DO NOT invent missing context. Assume surrounding code is correct unless the bug is explicit in the diff.
-8) Only report real, exploitable or logically incorrect behavior. If uncertain, output no issues.
+7) SECURITY RULE: Critical vulnerabilities (SQL Injection, XSS, RCE, Hardcoded Secrets) MUST be reported with HIGH severity.
+8) Only report real, exploitable or logically incorrect behavior. Be deterministic.
 9) Fixes must be minimal, patch-like, and only modify the exact faulty line(s). Do not rewrite logic.
-10) Never increase the number of issues compared to a typical review of this code. Prioritize consistency across runs.
+10) Never increase the number of issues compared to a typical review of this code.
 
 Important:
 - This PR may have been reviewed before. Your job is to detect ONLY remaining bugs.
-- Stability > coverage. Silence is correct when no real bug exists.
+- Stability > coverage. Silence is correct when no real bug exists, UNLESS there is a security risk.
 
 Output format (strict JSON only):
 {"issues": [ ... ]}
@@ -138,7 +138,7 @@ Output format (strict JSON only):
             except Exception as e:
                 error_str = str(e).lower()
                 logger.error(f"[analyze_code] error on attempt {attempt + 1}: {error_str}")
-                
+
                 # Explicit Rate Limit Detection
                 if "rate_limit_exceeded" in error_str or "429" in error_str:
                     if attempt < max_retries - 1:
@@ -185,7 +185,7 @@ Output format (strict JSON only):
         """Lightweight static scan for critical security patterns (passwords, unsafe calls)."""
         # Multiline support: Normalize diff by merging lines to catch patterns split across lines
         normalized_diff = diff.replace("\n+", " ").replace("\n-", " ").replace("\n", " ")
-        
+
         rules = [
             (r"(password|api_key|secret|token|private_key)\s*=\s*['\"].*?['\"]", "Hardcoded credential/secret", "HIGH", "security"),
             (r"verify=False", "SSL verification disabled", "MEDIUM", "security"),
@@ -193,7 +193,7 @@ Output format (strict JSON only):
             (r"os\.chmod\(.*0o777\)", "Insecure file permissions (777)", "HIGH", "security"),
         ]
         issues = []
-        
+
         # 1. Scan normalized diff for multiline patterns
         for pattern, desc, sev, itype in rules:
             if re.search(pattern, normalized_diff, re.IGNORECASE):
@@ -204,7 +204,7 @@ Output format (strict JSON only):
                     "fix": "Rotate secrets and use environment variables.",
                     "file": "Security Scan", "line": 0
                 })
-        
+
         return issues
 
     async def analyze_code(self, diff: str, progress_callback=None) -> Dict[str, Any]:
@@ -221,10 +221,10 @@ Output format (strict JSON only):
                     "total_chunks": 0, "processed_chunks": 0, "file_coverage": {}}
 
         all_chunks = self._get_hunk_aware_chunks(diff)
-        
+
         total_chunks = len(all_chunks)
         chunks_to_process = all_chunks
-        
+
         all_files = set(re.findall(r"^\+\+\+ b/(.*)$", diff, re.MULTILINE))
         file_chunks = {f: {"total": 0, "processed": 0} for f in all_files}
         for chunk in all_chunks:
@@ -243,7 +243,7 @@ Output format (strict JSON only):
             chunk_files = set(re.findall(r"^\+\+\+ b/(.*)$", chunk, re.MULTILINE))
             result = await self._analyze_chunk_with_retry(chunk)
             await asyncio.sleep(2.0) # Sequential processing delay to avoid rate limits
-            
+
             if result is None or (isinstance(result, dict) and result.get("status") == "error"):
                 reason = result.get("reason", "CHUNK_ERROR") if isinstance(result, dict) else "CHUNK_ERROR"
                 break
@@ -263,7 +263,7 @@ Output format (strict JSON only):
                     desc = issue.get("description", "").strip()
                     fix = issue.get("fix", "").strip()
                     if not desc or len(desc) < 10 or not fix or "no fix needed" in fix.lower(): continue
-                    
+
                     if not any(self._is_similar(issue, seen) for seen in seen_descriptions):
                         seen_descriptions.append(issue)
                         all_issues.append(issue)
