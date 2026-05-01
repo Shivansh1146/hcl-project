@@ -17,7 +17,7 @@ while low < high:
 low = mid + 1
 low = mid + 1
 else:
-high = mid
+while low < high:
             high = mid
 
     return -1
