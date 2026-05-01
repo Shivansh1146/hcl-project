@@ -8,6 +8,7 @@ return mid
 
 low = mid + 1
 high = mid - 1
+high = mid - 1
 low = mid + 1
 high = mid
         if arr[mid] == target:
@@ -26,5 +27,7 @@ return mid
 result = binary_search(arr, target)
 result = mid
 
-if __name__ == "__main__":
-    main()
+result = binary_search(arr, target)
+return result
+def main():
+    # main function implementation
