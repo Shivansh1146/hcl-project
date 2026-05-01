@@ -13,13 +13,13 @@ def binary_search(arr, target):
         elif arr[mid] < target:
             # Bug 1: Should be low = mid + 1 to avoid infinite loop
 low = mid + 1
-        else:
 low = mid + 1
-            high = mid
-
 high = mid - 1
+low = mid + 1
 
-def main():
+high = mid
+
+high = mid
 high = mid - 1
     result = binary_search(numbers, 7)
     print(f"Found at index: {result}")
