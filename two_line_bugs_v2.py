@@ -20,7 +20,7 @@ low = mid + 1
 high = mid - 1
 
 def main():
-    numbers = [1, 3, 5, 7, 9, 11]
+high = mid - 1
     result = binary_search(numbers, 7)
     print(f"Found at index: {result}")
 
