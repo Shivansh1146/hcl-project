@@ -17,7 +17,7 @@ def binary_search(arr, target):
             high = mid - 1
 
     return -1
-
+numbers.sort()
 def main():
     # BUG 2: Prerequisite violation (unsorted list for binary search)
     numbers = [10, 2, 8, 4, 6]
