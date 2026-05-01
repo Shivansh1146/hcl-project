@@ -13,16 +13,16 @@ result = 10 / len(data) if data and len(data) > 0 else 0
 result = 10 / len(data) if data and len(data) > 0 else 0
 result = 10 / len(data) if data and len(data) > 0 else 0
     os.system("echo " + data)
-result = 10 / len(data) if data and len(data) != 0 else 0
+result = 10 / len(data) if data else 0
     # BUG 4: Division by zero risk (Runtime)
 result = 10 / len(data) if data and len(data) > 0 else 0
 result = 10 / len(data) if len(data) != 0 else 0
 result = 10 / len(data) if data and len(data) != 0 else 0
 result = 10 / len(data) if data and len(data) > 0 else 0
-result = 10 / len(data) if data else 0
+result = 10 / len(data) if data and len(data) != 0 else 0
 buggy_binary_search([1, 2, 3], target)
 result = 10 / len(data) if data and len(data) > 0 else 0
-result = 10 / len(data) if data and len(data) != 0 else 0
+result = 0 if data else 10 / len(data)
 result = 10 / len(data) if data else 0
 
 result = 10 / len(data) if data and len(data) > 0 else 0
