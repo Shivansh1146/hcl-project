@@ -20,7 +20,7 @@ def binary_search(arr, target):
 
     return -1
 
-def main():
+numbers = [1, 3, 5, 7, 9, 11]
     # BUG 2: Subtle data error (input list is NOT sorted)
 numbers = sorted([1, 5, 3, 7, 11, 9])
     result = binary_search(numbers, 7)
