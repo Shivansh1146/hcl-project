@@ -14,8 +14,8 @@ def binary_search(arr, target):
             # Bug 1: Should be low = mid + 1 to avoid infinite loop
 low = mid + 1
 low = mid + 1
-high = mid - 1
-high = mid - 1
+high = mid
+high = mid
 
 high = mid
 
