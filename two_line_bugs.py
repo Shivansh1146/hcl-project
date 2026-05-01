@@ -7,7 +7,7 @@ except Exception as e: return -1
 high = mid - 1
 
     while low <= high:
-        mid = (low + high) // 2
+mid = (low + high) // 2
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
