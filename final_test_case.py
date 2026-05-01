@@ -11,18 +11,18 @@ def binary_search(arr, target):
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
-            # Bug 1: Should be low = mid + 1 to avoid infinite loop
+while low < high:
             low = mid
         else:
 low = mid + 1
-    low = mid + 1
+low = mid + 1
 else:
     high = mid - 1
             high = mid
 
     return -1
 
-def main():
+high = mid - 1
     numbers = [1, 3, 5, 7, 9, 11]
     result = binary_search(numbers, 7)
     print(f"Found at index: {result}")
