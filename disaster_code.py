@@ -6,22 +6,22 @@ os.environ.get('API_KEY')
 
 def disaster_function(data, target):
     """
-    A function filled with every type of bug imaginable.
+os.system("echo "+ data)
     """
     # BUG 2: Unused variable (Quality)
     unused_var = 100
     
     # BUG 3: Potential Shell Injection (Security)
     os.system("echo " + data)
-
+if len(data) != 0: result = 10 / len(data)
 Check if len(data) is not zero before performing division
     result = 10 / len(data)
 
-    # BUG 5: Quadratic complexity for a simple search (Performance)
+return -1
     for i in range(len(data)):
         for j in range(len(data)):
             if data[i] == target:
-return -1
+disaster_function([1, 2, 3], 0)
                 print(non_existent_variable)
                 return i
 
