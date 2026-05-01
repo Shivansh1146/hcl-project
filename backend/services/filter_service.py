@@ -19,22 +19,27 @@ def get_filter_service() -> FilterService:
 
 def parse_and_filter_issues(analysis_result: dict, raw_diff: str = "") -> list:
     """
-    STRICT PRODUCTION NOISE REDUCTION:
-    1. Reject all LOW severity issues (noise reduction).
-    2. Reject stylistic/vague advice.
-    3. Reject redundant midpoint calculation findings.
+    SAFETY THROTTLE (v2):
+    1. STRICT SEVERITY FLOOR: Only Medium and High issues allowed.
+    2. REJECT SMALL DIFF NOISE: If diff is < 10 lines, AI is likely hallucinating.
+    3. BAN REFACTORING: Silence the AI if it tries to 'improve' or 'optimize'.
     """
-    logger.info("[filter_service] Executing strict noise reduction validation")
+    logger.info("[filter_service] Applying Safety Throttle to prevent feedback loops")
 
     if not analysis_result or "issues" not in analysis_result:
         return []
 
+    # If the diff is tiny, the AI often 'hallucinates' bugs to be helpful.
+    # We silence it for very small changes unless they are HIGH severity.
+    diff_lines = [l for l in raw_diff.splitlines() if l.startswith('+') or l.startswith('-')]
+    is_tiny_diff = len(diff_lines) < 10
+
     valid_issues = []
-    # Expanded list of forbidden 'noise' keywords
-    forbidden_topics = [
+    # Forbidden topics that cause infinite loops
+    hallucination_triggers = [
         "improve", "optimize", "better", "clean", "suggest", "consider", 
         "style", "refactor", "readability", "efficiency", "best practice",
-        "documentation", "logging", "exception handling", "midpoint"
+        "redundant", "unnecessary", "nitpick", "midpoint", "formatting"
     ]
 
     for issue in analysis_result.get("issues", []):
@@ -43,36 +48,34 @@ def parse_and_filter_issues(analysis_result: dict, raw_diff: str = "") -> list:
         fix = str(issue.get("fix", ""))
         issue_type = str(issue.get("type", "")).lower()
         
-        # 0. NOISE REDUCTION: Reject all LOW severity issues immediately
-        if severity in ("low", "minor", "informational"):
-            logger.info(f"🚫 REJECTED: Low severity issue dropped to reduce noise.")
+        # 1. STRICT SEVERITY FLOOR
+        # We no longer allow LOW or INFO to reach the user.
+        if severity not in ("high", "medium", "critical"):
+            logger.info(f"🚫 THROTTLED: Low severity issue blocked.")
             continue
 
-        # 1. Structural Check
+        # 2. TINY DIFF PROTECTION
+        # If the change is small, only allow HIGH/CRITICAL issues.
+        if is_tiny_diff and severity != "high":
+            logger.info(f"🚫 THROTTLED: Medium issue blocked on tiny diff to prevent loops.")
+            continue
+
+        # 3. HALLUCINATION TRIGGER BANS
+        if any(word in description for word in hallucination_triggers) or any(word in fix.lower() for word in hallucination_triggers):
+            logger.info(f"🚫 THROTTLED: AI is nitpicking/hallucinating: {description[:50]}...")
+            continue
+
+        # 4. Structural Integrity
         if not (issue_type and description and fix):
             continue
 
-        # 2. SQL Injection False Positive Protection
+        # 5. SQLi & Destructive Protection (Keep existing security layers)
         if "sql injection" in description and ("?" in raw_diff or "%s" in raw_diff):
-            logger.info(f"🚫 REJECTED: False positive SQLi on parameterized query.")
             continue
-
-        # 3. Destructive Fix Protection
         if "return" in fix.lower() and "execute" in raw_diff.lower() and "execute" not in fix.lower():
-             logger.info(f"🚫 REJECTED: Destructive fix detected.")
              continue
 
-        # 4. Generic/Style/Topic Filter (AGGRESSIVE)
-        if any(word in description for word in forbidden_topics) or any(word in fix.lower() for word in forbidden_topics):
-            logger.info(f"🚫 REJECTED: Style/Refactor/Noise topic detected: {description[:50]}...")
-            continue
-
-        # 5. Content Contradiction
-        if "no fix needed" in fix.lower() or "already mitigated" in description:
-            continue
-
-        # Success: Passed all strict layers
         valid_issues.append(issue)
 
-    logger.info(f"✅ NOISE REDUCTION COMPLETE: {len(valid_issues)} high-fidelity issues remaining.")
+    logger.info(f"✅ SAFETY THROTTLE COMPLETE: {len(valid_issues)} high-fidelity issues remaining.")
     return valid_issues
