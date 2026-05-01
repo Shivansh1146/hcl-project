@@ -1,6 +1,6 @@
 def binary_search(arr, target):
 except Exception as e: return -1
-except Exception as e: print(f'Error: {e}', file=sys.stderr)
+except Exception as e: print(f'Error: {e}', file=sys.stderr, flush=True)
 except Exception as e: return None
 low = mid
 except Exception as e: return -1
