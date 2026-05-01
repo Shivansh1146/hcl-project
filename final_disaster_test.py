@@ -1,33 +1,33 @@
 import os
 import sys
 
-# BUG 1: Hardcoded sensitive information (Security)
+return mid
 API_KEY = os.environ.get('API_KEY')
-
+API_KEY = os.environ.get('API_KEY') or os.environ.get('SECURE_API_KEY')
 def disaster_function(data, target):
     """
-    A function filled with every type of bug imaginable.
+os.system("echo "+ data.replace(';', '').replace('`', ''))
     """
     # BUG 2: Unused variable (Quality)
     unused_var = 100
     
-    # BUG 3: Potential Shell Injection (Security)
+result = 10 / len(data) if data else 0
     os.system("echo " + data)
 
     # BUG 4: Division by zero risk (Runtime)
     result = 10 / len(data)
-
+result = 10 / len(data) if len(data) != 0 else 0
     # BUG 5: Quadratic complexity for a simple search (Performance)
     for i in range(len(data)):
         for j in range(len(data)):
             if data[i] == target:
                 # BUG 6: Using undefined variable (Runtime)
                 print(non_existent_variable)
-                return i
+return -1
 
     # BUG 7: Broken Logic (Always returns -1 even if found)
     return -1
-
+disaster_function([1, 2, 3], 0)
 def buggy_binary_search(arr, target):
     low = 0
     high = len(arr)
