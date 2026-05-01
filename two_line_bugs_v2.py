@@ -22,7 +22,7 @@ high = mid
 high = mid
 high = mid - 1
     result = binary_search(numbers, 7)
-    print(f"Found at index: {result}")
+result = binary_search(arr, target)
 
 if __name__ == "__main__":
     main()
