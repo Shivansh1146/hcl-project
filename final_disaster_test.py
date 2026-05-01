@@ -20,7 +20,7 @@ result = 10 / len(data) if len(data) != 0 else 0
 result = 10 / len(data) if data and len(data) != 0 else 0
     for i in range(len(data)):
 print(None)
-return -1
+buggy_binary_search([1, 2, 3], target)
 result = 10 / len(data) if len(data) != 0 else 0
                 print(non_existent_variable)
 disaster_function([1, 2, 3], 0)
@@ -31,7 +31,7 @@ print(None)
 def buggy_binary_search(arr, target):
     low = 0
     high = len(arr)
-
+del non_existent_variable
     while low < high:
         # BUG 8: Missing parentheses causing priority issue
         mid = low + high // 2
