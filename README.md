@@ -26,36 +26,44 @@ The **HCL Project** is a production-grade, AI-powered GitHub Pull Request Review
 |---|---|---|
 | **Cloud Hosting** | Render (Blueprint) | Automated CI/CD deployment with dynamic port binding and persistent state. |
 | **Backend** | FastAPI (Python 3.11) | High-performance, asynchronous orchestration engine. |
-| **AI Intelligence** | Groq (LLaMA 3.3 70B) | Security-optimized analysis with ultra-low latency inference. |
+| **AI Engine** | Groq (LLaMA 3.3 70B) | Security-focused analysis with deterministic temperature (0.1). |
 | **Hardening** | `filter_service.py` | Literal blacklist and structural guards for iron-clad reliability. |
-| **Persistence** | SQLite (`reviews.db`) | Atomic state management with WAL mode for concurrency. |
-| **Observability** | Vanilla CSS/JS | Minimalist, high-performance UI with real-time state synchronization. |
+| **Persistence** | SQLite (`reviews.db`) | Atomic state tracking with WAL mode for concurrency control. |
+| **Dashboard** | Vanilla CSS/JS | Minimalist, high-performance UI with real-time state synchronization. |
 
 ---
 
-## 🚀 Quick Start (Deployment)
+## 🚀 Cloud Deployment (Render)
 
-### 1. Cloud Deployment (Render)
-The project is pre-configured for Render.
-1. Connect this repository to **Render**.
-2. Add the following Environment Variables in the Render Dashboard:
+1. Connect this repository to **Render** via the dashboard.
+2. Render will automatically detect the `render.yaml` blueprint.
+3. Configure the following **Environment Variables**:
    - `GITHUB_TOKEN`: Your GitHub Personal Access Token.
    - `GROQ_API_KEY`: Your Groq API Key.
    - `WEBHOOK_SECRET`: Your custom webhook secret.
-3. Render will automatically use the `render.yaml` blueprint to build and deploy.
-
-### 2. Local Setup (Docker)
-```bash
-# Build and run with persistence
-docker-compose up --build -d
-```
-Access the dashboard at `http://localhost:8000`.
+4. The system will deploy automatically and provide a public URL.
 
 ---
 
-## 🛠️ Local Development
+## 🛠️ Local Setup & Development
 
-### 1. Environment Setup
+### 1. Installation
+```bash
+git clone https://github.com/Shivansh1146/hcl-project
+cd "HCL Project"
+python -m venv .venv
+
+# Windows
+.\.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
+
+cd backend
+pip install -r requirements.txt
+```
+
+### 2. Configure Environment
 Create `backend/.env`:
 ```env
 GROQ_API_KEY=gsk_...
@@ -64,12 +72,26 @@ WEBHOOK_SECRET=your_secret
 PORT=8000
 ```
 
-### 2. Launching the System
+### 3. Launching the System
 ```bash
 cd backend
-pip install -r requirements.txt
 python -m uvicorn main:app --reload --port 8000
 ```
+
+---
+
+## 🐳 Docker Orchestration
+
+### 1. Build and Run
+```bash
+# Start with persistence and auto-restart
+docker-compose up --build -d
+```
+
+### 2. Monitoring & Persistence
+- **Logs**: View real-time output with `docker-compose logs -f`.
+- **Database**: The `reviews.db` is mounted as a volume, ensuring data survives restarts.
+- **Dashboard**: Accessible at `http://localhost:8000`.
 
 ---
 
@@ -87,8 +109,17 @@ HCL Project/
 │   └── services/
 │       ├── ai_service.py        # Groq LLaMA Engine + Hardening Guards
 │       ├── filter_service.py    # Iron-Clad Logic & Content Guards
-│       └── validator.py         # Anti-Hallucination Cross-Checker
+│       ├── validator.py         # Anti-Hallucination Cross-Checker
+│       └── syntax_validator.py  # Local Code-Correctness Verification
 ```
+
+---
+
+## 🔐 Security & Safety Notes
+
+- **Secrets**: All API keys are stored in `.env` and are strictly excluded from version control.
+- **Non-Destructive**: The AI is programmed to never delete code blocks; it only suggests surgical line-level fixes.
+- **Fail-Safe**: If the AI engine is unreachable or returns malformed data, the system defaults to `REVIEW_REQUIRED` to prevent unsafe approvals.
 
 ---
 
@@ -96,8 +127,8 @@ HCL Project/
 
 **Shivansh**
 - GitHub: [Shivansh1146](https://github.com/Shivansh1146)
-- Project: [HCL Project](https://github.com/Shivansh1146/hcl-project)
+- Project: [HCL AI Code Reviewer](https://github.com/Shivansh1146/hcl-project)
 
 ---
 
-*Built with Python · FastAPI · Groq · GitHub REST API*
+*Built with Python · FastAPI · Groq · GitHub REST API · Optimized for Production*
