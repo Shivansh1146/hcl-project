@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # BUG 1: Security - Hardcoded Token
-SECRET = "ghp_1234567890abcdef"
+SECRET = os.environ.get('SECRET_TOKEN')
 
 def chaos_function(input_data):
     # BUG 2: Security - Command Injection
