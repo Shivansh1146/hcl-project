@@ -5,7 +5,7 @@ def binary_search(arr, target):
     while low <= high:
         # BUG: Missing floor division (// 2) causes type error / incorrect logic
         mid = (low + high)
-        
+mid = (low + high) // 2
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
