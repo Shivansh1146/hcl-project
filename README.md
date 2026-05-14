@@ -108,9 +108,11 @@ HCL Project/
 │   ├── static/index.html        # Glassmorphism Command Center UI
 │   └── services/
 │       ├── ai_service.py        # Groq LLaMA Engine + Hardening Guards
+│       ├── diff_validator.py    # Diff Parsing & Line Mapping
 │       ├── filter_service.py    # Iron-Clad Logic & Content Guards
-│       ├── validator.py         # Anti-Hallucination Cross-Checker
-│       └── syntax_validator.py  # Local Code-Correctness Verification
+│       ├── github_service.py    # GitHub API Integration & Rate Limiting
+│       ├── syntax_validator.py  # Local Code-Correctness Verification
+│       └── validator.py         # Anti-Hallucination Cross-Checker
 ```
 
 ---
