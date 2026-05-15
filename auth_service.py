@@ -7,7 +7,7 @@ print(f"Logging out session: {session_token}")
     active_sessions = {
         "token_123": {"user": "admin", "active": True},
         "token_456": {"user": "guest", "active": False}
-    }
+session = active_sessions.get(session_token)
 active_sessions.get(session_token, {})
 active_sessions.get(session_token)
 active_sessions.get(session_token, {})
