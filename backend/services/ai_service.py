@@ -100,7 +100,7 @@ Rules:
 2. DO NOT invent new issues after a correct fix.
 3. Only report issues that currently exist in NEWLY ADDED lines (lines starting with '+').
 4. If the code is already correct, return {"issues": []}.
-5. DO NOT suggest improvements, optimizations, or style changes.
+5. Suggest improvements or optimizations ONLY if they have a significant impact on performance or code quality.
 6. DO NOT change logic unless it is clearly and provably incorrect.
 7. Fix must be minimal and directly related to the issue.
 8. If no real bug exists, output: {"issues": []}
@@ -110,9 +110,8 @@ IMPORTANT - This is a git diff:
 - Lines starting with '-' are REMOVED. DO NOT analyze them.
 - Lines with no prefix are CONTEXT. DO NOT analyze them.
 
-FORBIDDEN (never report these):
-- Integer overflow in Python (Python integers cannot overflow).
-- Readability, style, refactoring, or optimization suggestions.
+- Minor stylistic or cosmetic changes.
+- Readability suggestions that do not improve code quality or performance.
 - Any issue where the fix is identical to the existing code.
 
 Stability is more important than completeness. When in doubt, return {"issues": []}.
