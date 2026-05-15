@@ -287,7 +287,7 @@
             width: 100%;
             padding: 1.25rem 0.5rem;
             display: grid;
-            grid-template-columns: 1fr auto auto auto;
+            grid-template-columns: 1.5fr 1fr auto auto;
             gap: 1rem;
             align-items: center;
             cursor: pointer;
@@ -851,7 +851,7 @@
                         </strong>
                         <span class="pr-meta">Last evaluated &bull; ${new Date(rv.reviewed_at).toLocaleTimeString()}</span>
                     </div>
-                    <div class="tag-pill" style="margin-right: 1.5rem; opacity: 0.8;">
+                    <div class="tag-pill" style="justify-self: center; display: flex; gap: 0.5rem; opacity: 0.8;">
                         ${(rv.severities.high || 0) > 0 ? `<div class="sev-badge high" style="padding:1px 6px;">HIGH ${rv.severities.high}</div>` : ''}
                         ${(rv.severities.medium || 0) > 0 ? `<div class="sev-badge medium" style="padding:1px 6px;">MED ${rv.severities.medium}</div>` : ''}
                         ${(rv.severities.low || 0) > 0 ? `<div class="sev-badge low" style="padding:1px 6px;">LOW ${rv.severities.low}</div>` : ''}
