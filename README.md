@@ -127,7 +127,7 @@ HCL Project/
 
 ## 👤 Author
 
-**Shivansh**
+**Shivansh Jaiswal**
 
 This project was fully designed, developed, and implemented by Shivansh Jaiswal.
 - GitHub: [Shivansh1146](https://github.com/Shivansh1146)
