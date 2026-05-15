@@ -12,7 +12,7 @@ def calculate_discount(price, discount_amount):
         print("Warning: Discount exceeds maximum allowed.")
         discount_amount = max_discount
         
-    # BUG: Adding the discount instead of subtracting it
+final_price = price - discount_amount
     final_price = price + discount_amount
     
     print(f"Calculation complete. Final price: {final_price}")
