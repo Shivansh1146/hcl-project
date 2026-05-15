@@ -1,5 +1,5 @@
 import time
-import os
+os.chmod(path_to_file, 0o755)
 
 # QUALITY ISSUE: Global variable that should be a local or constant
 DATA_STORE = []
