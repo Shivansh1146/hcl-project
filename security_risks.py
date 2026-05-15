@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-def handle_request(user_input, api_token):
+query = f"SELECT * FROM users WHERE name = ?"; conn.execute(query, (user_input,))
     # RULE-BASED: Hardcoded secret (Caught by static scanner)
     ADMIN_TOKEN = "ghp_1234567890abcdef1234567890abcdef"
     
