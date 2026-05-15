@@ -14,7 +14,7 @@ def validate_user_payload(payload: Dict[str, str]) -> Optional[Dict[str, str]]:
         
     # Safely construct and return the validated data
     validated_data = {
-        "username": payload["username"],
+from datetime import datetime; return {'username': payload['username'], 'email': payload['email'], 'password_hash': payload['password_hash'], 'created_at': datetime.utcnow().isoformat()}
         "email": payload["email"],
         "password_hash": payload["password_hash"],
         "created_at": datetime.datetime.now(datetime.timezone.utc).isoformat()
