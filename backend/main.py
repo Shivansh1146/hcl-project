@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import json
 from typing import List, Dict, Any, Optional
 
 from fastapi import FastAPI, Request, BackgroundTasks, HTTPException
@@ -68,6 +69,49 @@ def compute_decision(high, medium, low, total_chunks, processed_chunks, error=Fa
     # SAFE: Fully processed with minimal issues
     return "SAFE"
 
+def generate_decision_explanation(high, medium, low, total_chunks, processed_chunks, rule_based_count, error=False):
+    """
+    Computes a detailed explanation for the PR decision based on real pipeline metrics.
+    STRICT: Reflects logic from compute_decision() and rule overrides.
+    """
+    reasons = []
+    
+    # Use existing decision logic
+    decision = compute_decision(high, medium, low, total_chunks, processed_chunks, error=error)
+    
+    # Rule-based override (matches main pipeline logic)
+    if rule_based_count > 0:
+        decision = "BLOCK"
+        reasons.append(f"Policy Violation: {rule_based_count} security risks identified by static rule engine.")
+    
+    if error:
+        reasons.append("System error occurred during analysis (Fail-Safe triggered).")
+    elif high > 0:
+        reasons.append(f"Critical Risk: {high} high-severity vulnerability/vulnerabilities detected.")
+    elif processed_chunks < total_chunks:
+        coverage_pct = round((processed_chunks / total_chunks * 100), 1) if total_chunks > 0 else 0
+        reasons.append(f"Incomplete Analysis: Only {coverage_pct}% of the code was analyzed due to size/rate limits.")
+        reasons.append("Manual review is mandatory for unverified sections.")
+    elif medium >= 3:
+        reasons.append(f"Threshold Reached: {medium} medium-severity issues found (Limit: 3).")
+    elif high == 0 and medium == 0 and low == 0:
+        reasons.append("Clean PR: Fully processed with zero identified issues.")
+    else:
+        reasons.append(f"Verified: {low} low-severity improvements suggested, but no critical risks found.")
+
+    return {
+        "decision": decision,
+        "reasons": reasons,
+        "metrics": {
+            "high": high,
+            "medium": medium,
+            "low": low,
+            "coverage": round((processed_chunks / total_chunks * 100), 1) if total_chunks > 0 else 100,
+            "rule_based": rule_based_count
+        }
+    }
+
+
 
 async def process_webhook(payload: dict):
     """Production-grade fail-safe pipeline with guaranteed finalization."""
@@ -82,7 +126,9 @@ async def process_webhook(payload: dict):
     valid_issues = []
     total_chunks = 0
     processed_chunks = 0
+    rule_based_count = 0
     owner = repo = None
+
     analysis = None
 
     async with analysis_semaphore:
@@ -205,18 +251,23 @@ async def process_webhook(payload: dict):
                     high_count = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "high")
                     med_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "medium")
                     low_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "low")
-
                     rule_based_count = analysis.get("rule_based_count", 0)
-                    
-                    # Apply Confidence Kill Switch from AI Service or based on counts
-                    decision = analysis.get("decision_status", "SAFE")
-                    if decision == "SAFE":
-                        decision = compute_decision(high_count, med_count, low_count, total_chunks, processed_chunks)
+
+                    # Generate Real Explainability Data
+                    explanation_data = generate_decision_explanation(
+                        high_count, med_count, low_count, 
+                        total_chunks, processed_chunks, 
+                        rule_based_count, 
+                        error=False
+                    )
+                    decision = explanation_data["decision"]
+
                     
                     # Deterministic Override: Static scanner beats AI
                     if rule_based_count > 0:
                         logger.warning(f"🛡️ RULE OVERRIDE: {rule_based_count} static risks found. Forcing BLOCK.")
                         decision = "BLOCK"
+
                     
                     if decision == "SAFE" and rule_based_count > 0:
                         logger.warning("🚨 [DISAGREEMENT] AI suggested SAFE but Rule Guard found critical risks.")
@@ -247,6 +298,13 @@ async def process_webhook(payload: dict):
                             f"### 🤖 AI Code Review Summary — Decision: **{decision}**",
                             f"**Coverage:** {coverage_pct}% of diff analyzed."
                         ]
+
+                        # Add real explanation reasons to the GitHub comment
+                        if 'explanation_data' in locals():
+                            summary_lines.append("\n**Decision Rationale:**")
+                            for r in explanation_data.get("reasons", []):
+                                summary_lines.append(f"- {r}")
+
                         
                         if coverage_pct < 10:
                             summary_lines.insert(1, "🚨 **CRITICAL: EXTREMELY LOW COVERAGE**")
@@ -299,18 +357,30 @@ async def process_webhook(payload: dict):
 
         finally:
             if pr_id is not None:
+                # Re-calculate counts if valid_issues changed or to ensure consistency
                 high_count = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "high")
                 med_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "medium")
                 low_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "low")
+                
+                # Final pass for explainability (catches errors in finally block)
+                explanation_data = generate_decision_explanation(
+                    high_count, med_count, low_count, 
+                    total_chunks, processed_chunks, 
+                    rule_based_count, 
+                    error=(final_status == "error")
+                )
+                
                 await stats_store.finalize_review(
                     pr_id, valid_issues,
                     status=final_status,
-                    decision_status=decision,
+                    decision_status=explanation_data["decision"],
                     high=high_count,
                     medium=med_count,
                     low=low_count,
                     total_chunks=total_chunks,
-                    processed_chunks=processed_chunks
+                    processed_chunks=processed_chunks,
+                    rule_based_count=rule_based_count,
+                    decision_explanation=json.dumps(explanation_data)
                 )
 
             if head_sha:
