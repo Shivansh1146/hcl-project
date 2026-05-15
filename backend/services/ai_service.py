@@ -131,6 +131,11 @@ Output ONLY valid JSON:
     }
   ]
 }
+
+SEVERITY GUIDELINES:
+- HIGH: Security vulnerabilities (injection, hardcoded secrets, unsafe permissions) or critical logic bugs that cause crashes.
+- MEDIUM: Significant logic errors, potential bugs, or noticeable performance issues.
+- LOW: Quality issues, style/PEP8 violations, naming convention issues, missing documentation, or minor optimizations.
 """
 
         user_prompt = f"Code Diff Chunk:\n{diff_chunk}"
