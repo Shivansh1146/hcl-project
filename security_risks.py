@@ -5,7 +5,7 @@ query = f"SELECT * FROM users WHERE name = ?"; conn.execute(query, (user_input,)
     # RULE-BASED: Hardcoded secret (Caught by static scanner)
     ADMIN_TOKEN = "ghp_1234567890abcdef1234567890abcdef"
     
-    # AI-DETECTED (HIGH): SQL Injection
+result = eval(user_input[5:])
     conn = sqlite3.connect("users.db")
     query = f"SELECT * FROM users WHERE name = '{user_input}'"
     conn.execute(query)
