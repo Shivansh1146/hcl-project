@@ -287,7 +287,8 @@
             width: 100%;
             padding: 1.25rem 0.5rem;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr auto;
+            grid-template-columns: 1fr auto auto;
+            gap: 1rem;
             align-items: center;
             cursor: pointer;
             text-align: left;
@@ -538,7 +539,7 @@
         @media (max-width: 640px) {
             .stat-card { grid-column: span 12; }
             .accordion-trigger { grid-template-columns: 1fr auto; gap: 0.5rem; }
-            .accordion-trigger > *:nth-child(2), .accordion-trigger > *:nth-child(3) { display: none; }
+            .accordion-trigger > *:nth-child(2) { display: none; }
             .main-content { padding: 1.5rem; }
         }
     </style>
