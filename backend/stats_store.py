@@ -62,7 +62,9 @@ async def initialize_db():
             "medium_count": "INTEGER DEFAULT 0",
             "low_count": "INTEGER DEFAULT 0",
             "total_chunks": "INTEGER DEFAULT 0",
-            "processed_chunks": "INTEGER DEFAULT 0"
+            "processed_chunks": "INTEGER DEFAULT 0",
+            "rule_based_count": "INTEGER DEFAULT 0",
+            "decision_explanation": "TEXT"
         }
         for col, definition in required_columns.items():
             if col not in prs_columns:
@@ -87,7 +89,7 @@ async def initialize_db():
                 FOREIGN KEY (pr_id) REFERENCES prs (id)
             )
         ''')
-        
+
         # Migration: Add title column if it doesn't exist
         async with db.execute("PRAGMA table_info(issues)") as cursor:
             issues_columns = [row[1] for row in await cursor.fetchall()]
@@ -266,7 +268,8 @@ async def initiate_review(repo: str, pr_number: int, status: str = "pending") ->
 async def finalize_review(pr_id: int, issues: list, status: str = "error",
                           decision_status: str = "BLOCK", high: int = 0,
                           medium: int = 0, low: int = 0,
-                          total_chunks: int = 0, processed_chunks: int = 0):
+                          total_chunks: int = 0, processed_chunks: int = 0,
+                          rule_based_count: int = 0, decision_explanation: str = None):
     """
     Step 3 Fix: Finalizes via UPDATE only — never inserts a new row.
     Step 4 Fix: Empty issues list with status=success → decision stays as computed
@@ -277,7 +280,7 @@ async def finalize_review(pr_id: int, issues: list, status: str = "error",
         async with get_db() as db:
             # Explicit transaction for atomicity
             await db.execute("BEGIN IMMEDIATE")
-            
+
             # Atomic UPDATE — single row per PR, never ghost inserts
             await db.execute(
                 """UPDATE prs SET
@@ -287,9 +290,11 @@ async def finalize_review(pr_id: int, issues: list, status: str = "error",
                    medium_count    = ?,
                    low_count       = ?,
                    total_chunks    = ?,
-                   processed_chunks = ?
+                   processed_chunks = ?,
+                   rule_based_count = ?,
+                   decision_explanation = ?
                    WHERE id        = ?""",
-                (status, decision_status, high, medium, low, total_chunks, processed_chunks, pr_id)
+                (status, decision_status, high, medium, low, total_chunks, processed_chunks, rule_based_count, decision_explanation, pr_id)
             )
 
             # Delete stale issues from previous processing attempts, then re-insert
@@ -332,7 +337,7 @@ async def get_stats(limit: int = 15, offset: int = 0) -> dict:
     async with get_db() as db:
         # Atomic read transaction to prevent dirty reads and UI flickering
         await db.execute("BEGIN")
-        
+
         # Counts
         async with db.execute("SELECT COUNT(*) FROM prs") as c: total_prs = (await c.fetchone())[0]
         async with db.execute("SELECT COUNT(*) FROM issues") as c: total_issues = (await c.fetchone())[0]
@@ -373,7 +378,9 @@ async def get_stats(limit: int = 15, offset: int = 0) -> dict:
                     "high": pr.get('high_count', 0),
                     "medium": pr.get('medium_count', 0),
                     "low": pr.get('low_count', 0),
-                }
+                },
+                "rule_based_count": pr.get('rule_based_count', 0),
+                "decision_explanation": pr.get('decision_explanation')
             })
 
         # Meta
@@ -388,7 +395,7 @@ async def get_stats(limit: int = 15, offset: int = 0) -> dict:
         async with db.execute("SELECT reviewed_at FROM prs ORDER BY reviewed_at DESC LIMIT 1") as c:
             last_row = await c.fetchone()
             last_review_time = last_row[0] if last_row else None
-            
+
         await db.commit()
 
     return {

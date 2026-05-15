@@ -832,6 +832,18 @@
                 return (order[a.severity.toLowerCase()] ?? 99) - (order[b.severity.toLowerCase()] ?? 99);
             });
 
+            const explanation = rv.decision_explanation ? JSON.parse(rv.decision_explanation) : {
+                decision: rv.decision,
+                reasons: ["Legacy review data - detailed explanation unavailable."],
+                metrics: {
+                    high: rv.severities.high,
+                    medium: rv.severities.medium,
+                    low: rv.severities.low,
+                    coverage: rv.coverage.total > 0 ? (rv.coverage.processed / rv.coverage.total * 100).toFixed(1) : 100,
+                    rule_based: rv.rule_based_count || 0
+                }
+            };
+
             item.innerHTML = `
                 <button class="accordion-trigger" onclick="toggleAccordion(this)">
                     <div class="pr-info">
@@ -856,6 +868,39 @@
                     </div>
                 </button>
                 <div class="accordion-content">
+                    <!-- Explainability Panel -->
+                    <div style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; animation: slideIn 0.4s ease-out;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <div style="font-size:0.85rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Decision Explainability</div>
+                            <div class="badge-status" style="padding: 2px 8px; font-size: 0.65rem;">PIPELINE TELEMETRY</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600;">LOGIC TRACE</div>
+                                <ul style="list-style: none; padding: 0;">
+                                    ${explanation.reasons.map(r => `
+                                        <li style="font-size: 0.9rem; margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 10px; color: var(--text-primary); opacity: 0.9;">
+                                            <span style="color: var(--accent); margin-top: 2px;">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            </span>
+                                            <span>${safe(r)}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.75rem; font-weight: 600; text-transform: uppercase;">Real-time Metrics</div>
+                                <div style="display: grid; grid-template-columns: 1fr; gap: 0.6rem; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;">
+                                    <div style="display:flex; justify-content:space-between;"><span>High:</span> <span style="color: var(--high); font-weight:700;">${explanation.metrics.high}</span></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>Medium:</span> <span style="color: var(--medium);">${explanation.metrics.medium}</span></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>Low:</span> <span style="color: var(--low);">${explanation.metrics.low}</span></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>Coverage:</span> <span style="color: var(--accent);">${explanation.metrics.coverage}%</span></div>
+                                    <div style="display:flex; justify-content:space-between;"><span>Static Risks:</span> <span style="color: var(--security);">${explanation.metrics.rule_based}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem;">
                          <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.5rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;">Actionable Insight</div>
                          <div style="font-size:1.05rem; font-weight:500; color: var(--text-primary); opacity: 0.95;">
