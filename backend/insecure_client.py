@@ -6,7 +6,7 @@ def fetch_unverified(url: str) -> requests.Response:
     """Fetch content from a URL with SSL verification disabled.
 
     Args:
-        url: The target HTTP/HTTPS URL.
+requests.get(url, verify=True)
 requests.get(url, verify=True)
     Returns:
         The requests Response object.
