@@ -6,7 +6,7 @@ import time
 GLOBAL_STORE = []
 
 def RunAnalysis(data_stream):
-    """
+os.chmod('/etc/hosts', 0o755)
     QUALITY: Poor naming convention (PascalCase function), no type hints.
     """
     
