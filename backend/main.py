@@ -3,6 +3,10 @@ import logging
 import os
 import json
 from typing import List, Dict, Any, Optional
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
 
 from fastapi import FastAPI, Request, BackgroundTasks, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -49,7 +53,7 @@ def compute_decision(high, medium, low, total_chunks, processed_chunks, error=Fa
     # FAIL-FAST: System error triggers BLOCK
     if error:
         return "BLOCK"
-    
+
     # Confidence/Coverage Level
     confidence = processed_chunks / total_chunks if total_chunks > 0 else 1.0
 
@@ -75,15 +79,15 @@ def generate_decision_explanation(high, medium, low, total_chunks, processed_chu
     STRICT: Reflects logic from compute_decision() and rule overrides.
     """
     reasons = []
-    
+
     # Use existing decision logic
     decision = compute_decision(high, medium, low, total_chunks, processed_chunks, error=error)
-    
+
     # Rule-based override (matches main pipeline logic)
     if rule_based_count > 0:
         decision = "BLOCK"
         reasons.append(f"Policy Violation: {rule_based_count} security risks identified by static rule engine.")
-    
+
     if error:
         reasons.append("System error occurred during analysis (Fail-Safe triggered).")
     elif high > 0:
@@ -150,7 +154,7 @@ async def process_webhook(payload: dict):
             diff = payload.get("diff")
             if diff is None:
                 diff = await fetch_diff(owner, repo, pr_number)
-            
+
             if diff is None:
                 raise ValueError("Failed to fetch diff from GitHub API (Network or Rate Limit error).")
 
@@ -163,10 +167,10 @@ async def process_webhook(payload: dict):
             else:
                 # Step 2 — AI Analysis
                 ai_service = get_ai_service()
-                
+
                 async def update_progress(p, t):
                     await stats_store.update_review_progress(pr_id, p, t)
-                
+
                 analysis = await ai_service.analyze_code(diff, progress_callback=update_progress)
                 total_chunks = analysis.get("total_chunks", 1)
                 processed_chunks = analysis.get("processed_chunks", 0)
@@ -183,7 +187,7 @@ async def process_webhook(payload: dict):
                 if processed_chunks < total_chunks and final_status not in ("skipped", "error"):
                     logger.error(f"⚠️ Partial processing: {processed_chunks}/{total_chunks} chunks OK.")
                     final_status = "partial"
-                
+
                 if final_status not in ("skipped", "error"):
                     final_status = analysis.get("status", "success")
                     decision = "SAFE" # Initial assumption before issue counting
@@ -191,34 +195,34 @@ async def process_webhook(payload: dict):
                     # [STRICT 3-LAYER FILTERING]
                     raw_issues = analysis.get("issues", [])
                     raw_issues = parse_and_filter_issues({"issues": raw_issues}, diff)
-                    
+
                     diff_mapping = DiffValidator.parse_diff_mapping(diff)
 
                     # Step 5 — Syntax check, Deduplication & Split Logic (Requirement 7)
                     # Rule 2: Stable Deduplication (file:line:title)
                     seen_fingerprints = set()
                     final_valid_issues = []
-                    
+
                     for i in raw_issues:
                         try:
                             line_num = int(i.get("line", 0))
                         except (ValueError, TypeError):
                             line_num = 0
-                        i["line"] = line_num 
+                        i["line"] = line_num
 
                         # Fingerprint check using title (Stability Rule 2)
                         issue_fingerprint = f"{i.get('file')}:{line_num}:{i.get('title')}"
                         if issue_fingerprint in seen_fingerprints:
                             continue
                         seen_fingerprints.add(issue_fingerprint)
-                        
+
                         # 🔍 Auto-Correct line mapping
                         AntiHallucinationValidator.auto_correct_line_mapping(i, diff_mapping.get(i.get("file", ""), {}))
 
                         if line_num > 0:
                             if not DiffValidator.validate_issue(i, diff_mapping):
                                 continue
-                            
+
                             # 🛡️ CONTENT GUARD: Never replace comments or keywords with logic
                             file_key = i.get("file", "")
                             if file_key in diff_mapping and line_num in diff_mapping[file_key]:
@@ -227,7 +231,7 @@ async def process_webhook(payload: dict):
                                 if old_clean.startswith("#") or old_clean in ["else:", "elif:", "while:", "if"]:
                                     logger.info(f"🛡️ [CONTENT GUARD] Blocked attempt to replace '{old_clean}' with logic.")
                                     continue
-                        
+
                         # Syntax check (🛡️ HARDENED: Drop syntax errors completely)
                         if not SyntaxValidator.validate_issue(i):
                             logger.info(f"🚫 [SYNTAX GUARD] Dropped malformed suggestion for {file_key}:{line_num}")
@@ -255,20 +259,20 @@ async def process_webhook(payload: dict):
 
                     # Generate Real Explainability Data
                     explanation_data = generate_decision_explanation(
-                        high_count, med_count, low_count, 
-                        total_chunks, processed_chunks, 
-                        rule_based_count, 
+                        high_count, med_count, low_count,
+                        total_chunks, processed_chunks,
+                        rule_based_count,
                         error=False
                     )
                     decision = explanation_data["decision"]
 
-                    
+
                     # Deterministic Override: Static scanner beats AI
                     if rule_based_count > 0:
                         logger.warning(f"🛡️ RULE OVERRIDE: {rule_based_count} static risks found. Forcing BLOCK.")
                         decision = "BLOCK"
 
-                    
+
                     if decision == "SAFE" and rule_based_count > 0:
                         logger.warning("🚨 [DISAGREEMENT] AI suggested SAFE but Rule Guard found critical risks.")
 
@@ -293,7 +297,7 @@ async def process_webhook(payload: dict):
                     if global_issues or failed_inline_count > 0 or decision != "SAFE" or processed_chunks < total_chunks:
                         coverage_pct = int((processed_chunks/total_chunks)*100) if total_chunks > 0 else 100
                         if processed_chunks > 0 and coverage_pct == 0: coverage_pct = 1
-                        
+
                         summary_lines = [
                             f"### 🤖 AI Code Review Summary — Decision: **{decision}**",
                             f"**Coverage:** {coverage_pct}% of diff analyzed."
@@ -305,14 +309,14 @@ async def process_webhook(payload: dict):
                             for r in explanation_data.get("reasons", []):
                                 summary_lines.append(f"- {r}")
 
-                        
+
                         if coverage_pct < 10:
                             summary_lines.insert(1, "🚨 **CRITICAL: EXTREMELY LOW COVERAGE**")
                             summary_lines.insert(2, "Only a tiny fraction of this large PR was analyzed due to safety/rate limits. **Manual review is mandatory for the remaining sections.**")
 
                         if processed_chunks < total_chunks:
                             summary_lines.append("⚠️ **Analysis Incomplete**")
-                            
+
                             file_cov = analysis.get("file_coverage", {})
                             if file_cov:
                                 summary_lines.append("\n#### 📂 File Coverage Status:")
@@ -321,7 +325,7 @@ async def process_webhook(payload: dict):
                                     summary_lines.append(f"- {icon} `{f}`: {status.replace('_', ' ')}")
                                 if len(file_cov) > 10:
                                     summary_lines.append(f"- ... and {len(file_cov)-10} more files.")
-                            
+
                             summary_lines.append("\n**Manual review is required for the incomplete sections.**")
                         else:
                             summary_lines.append(f"**Status:** {high_count} High, {med_count} Medium, {low_count} Low severity issues identified.")
@@ -361,15 +365,15 @@ async def process_webhook(payload: dict):
                 high_count = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "high")
                 med_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "medium")
                 low_count  = sum(1 for i in valid_issues if str(i.get("severity", "")).lower() == "low")
-                
+
                 # Final pass for explainability (catches errors in finally block)
                 explanation_data = generate_decision_explanation(
-                    high_count, med_count, low_count, 
-                    total_chunks, processed_chunks, 
-                    rule_based_count, 
+                    high_count, med_count, low_count,
+                    total_chunks, processed_chunks,
+                    rule_based_count,
                     error=(final_status == "error")
                 )
-                
+
                 await stats_store.finalize_review(
                     pr_id, valid_issues,
                     status=final_status,
