@@ -1,32 +1,34 @@
-"""Demo helper module with intentional issues."""
-import os
+"""Calibrated demo helper module."""
+import requests
 
 
-def helper_func():
-    my_val = "value"
-    return my_val
-
-
-def process_file(file_path: str):
-    """Process file and adjust its permissions.
+def get_user_status(user_data: dict) -> str:
+    """Retrieve user status from data dictionary.
 
     Args:
-        file_path: Path to the target file.
-    """
-    os.chmod(file_path, 0o777)
-
-
-def calculate_ratio(a: float, b: float) -> float:
-    """Calculate the ratio between two numbers.
-
-    Args:
-        a: The numerator.
-        b: The denominator.
+        user_data: Dictionary containing user profile info.
 
     Returns:
-        The division result.
+        The status string.
     """
-    try:
-        return a / b
-    except:
-        pass
+    # Intentional Medium: Direct key access can raise KeyError if 'status' is missing
+    return user_data["status"]
+
+
+def fetch_api_data(url: str) -> dict:
+    """Fetch JSON data from an external API.
+
+    Args:
+        url: The API endpoint URL.
+
+    Returns:
+        The response JSON as a dictionary.
+    """
+    # Intentional High: SSL verification disabled
+    response = requests.get(url, verify=False)
+    return response.json()
+
+
+def process_user_details(user_id: int):
+    myUserId = user_id
+    return myUserId
