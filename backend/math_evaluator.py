@@ -1,5 +1,6 @@
 """Math expression evaluator module."""
 
+# This is a simple evaluation helper.
 def evaluate_expression(expression: str) -> int:
     """Evaluate a mathematical expression string.
 
