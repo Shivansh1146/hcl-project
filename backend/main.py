@@ -1,10 +1,12 @@
 import asyncio
 import logging
-import os
 import json
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
-from fastapi import FastAPI, Request, BackgroundTasks, HTTPException
+from dotenv import load_dotenv
+from fastapi import FastAPI, Request, BackgroundTasks
+
+load_dotenv()
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from services.github_service import fetch_diff, post_comment, post_inline_comment, post_status
@@ -13,7 +15,7 @@ from services.diff_validator import DiffValidator
 from services.syntax_validator import SyntaxValidator
 from services.filter_service import parse_and_filter_issues
 from services.validator import AntiHallucinationValidator
-from stats_store import initialize_db, get_stats, record_review, finalize_review, claim_sha_for_processing, is_sha_processed, mark_sha_status, upsert_review
+from stats_store import initialize_db, get_stats, finalize_review, claim_sha_for_processing, is_sha_processed, mark_sha_status, upsert_review
 import stats_store
 
 # Configure logging
@@ -36,29 +38,9 @@ async def health_check():
 # AI Analysis Semaphore to prevent Groq API overload (Max 5 concurrent)
 analysis_semaphore = asyncio.BoundedSemaphore(5)
 
-async def seed_fake_data():
-    """Inserts a fake PR to demonstrate the Yellow Badge."""
-    try:
-        from datetime import datetime, timezone
-        now = datetime.now(timezone.utc).isoformat()
-        async with stats_store.get_db() as db:
-            # Check if our fake PR 777 already exists
-            async with db.execute("SELECT id FROM prs WHERE pr_number = 777") as c:
-                if not await c.fetchone():
-                    # 1. Insert PR record
-                    await db.execute('''
-                        INSERT INTO prs (repo, pr_number, reviewed_at, status, decision_status, medium_count, decision_explanation)
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
-                    ''', ("HCL-Project", 777, now, "success", "REVIEW_REQUIRED", 1, '{"decision": "REVIEW_REQUIRED", "reasons": ["Manual Review Required: Seeded for UI Verification."]}'))
-                    await db.commit()
-                    logger.info("✨ Successfully seeded Fake Yellow PR #777")
-    except Exception as e:
-        logger.error(f"Failed to seed fake data: {str(e)}")
-
 @app.on_event("startup")
 async def startup():
     await initialize_db()
-    await seed_fake_data() # Ensure the yellow badge exists!
 
 def compute_decision(high, medium, low, total_chunks, processed_chunks, error=False):
     """Business Logic for PR Decision Engine."""
@@ -70,9 +52,6 @@ def compute_decision(high, medium, low, total_chunks, processed_chunks, error=Fa
     if error:
         return "BLOCK"
     
-    # Confidence/Coverage Level
-    confidence = processed_chunks / total_chunks if total_chunks > 0 else 1.0
-
     # HONESTY: Absolute rule - partial analysis is NEVER "SAFE" (Requirement 5)
     if processed_chunks < total_chunks:
         return "REVIEW_REQUIRED"
@@ -112,8 +91,8 @@ def generate_decision_explanation(high, medium, low, total_chunks, processed_chu
         coverage_pct = round((processed_chunks / total_chunks * 100), 1) if total_chunks > 0 else 0
         reasons.append(f"Incomplete Analysis: Only {coverage_pct}% of the code was analyzed due to size/rate limits.")
         reasons.append("Manual review is mandatory for unverified sections.")
-    elif medium >= 1:
-        reasons.append(f"Threshold Reached: {medium} medium-severity issues found (Limit: 1).")
+    elif medium >= 3:
+        reasons.append(f"Threshold Reached: {medium} medium-severity issues found (Limit: 3).")
     elif high == 0 and medium == 0 and low == 0:
         reasons.append("Clean PR: Fully processed with zero identified issues.")
     else:
@@ -282,14 +261,8 @@ async def process_webhook(payload: dict):
                     )
                     decision = explanation_data["decision"]
 
-                    # Verification Override: Force yellow for PR 149
-                    if pr_number == 149:
-                        decision = "REVIEW_REQUIRED"
-
-                    
                     # Deterministic Override: Static scanner beats AI
                     if rule_based_count > 0:
-                        logger.warning(f"🛡️ RULE OVERRIDE: {rule_based_count} static risks found. Forcing BLOCK.")
                         decision = "BLOCK"
 
                     
@@ -301,7 +274,6 @@ async def process_webhook(payload: dict):
                         logger.warning(f"🚨 [AI EMPTY] AI suggested SAFE with 0 issues on large diff ({len(diff)} chars).")
 
                     # Step 6 — Split Comment Strategy
-                    all_comments_posted = True
                     global_issues = [i for i in valid_issues if i.get("line") == 0]
                     inline_issues = [i for i in valid_issues if i.get("line", 0) > 0]
 
@@ -310,7 +282,6 @@ async def process_webhook(payload: dict):
                         suggestion = DiffValidator.generate_suggestion(issue, diff_mapping)
                         success = await post_inline_comment(owner, repo, pr_number, issue, head_sha, suggestion=suggestion)
                         if not success:
-                            all_comments_posted = False
                             failed_inline_count += 1
 
                     # Reliability Fallback / Summary Comment
