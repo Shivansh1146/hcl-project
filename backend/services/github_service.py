@@ -89,13 +89,18 @@ class GitHubService:
             return False
 
     async def post_inline_comment(self, owner: str, repo: str, pr_number: int, issue: Dict[str, Any], commit_sha: str, suggestion: Optional[str] = None) -> bool:
-        """Posts an inline comment with adaptive rate limiting and optional code suggestion."""
+        """Posts an inline review comment. If a suggestion block exists, posts it as a
+        committable GitHub suggestion. Context (severity/description) goes in the body
+        ABOVE the suggestion so GitHub still renders the one-click 'Commit suggestion' button."""
         logger.info(f"Posting inline comment to {owner}/{repo} PR #{pr_number}")
         url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/comments"
 
+        severity_emoji = {"HIGH": "🔴", "MEDIUM": "🟡", "LOW": "🟢"}.get(
+            issue.get("severity", "").upper(), "🔍"
+        )
         severity = issue.get("severity", "medium").upper()
+        title = issue.get("title", "Code Issue")
         description = issue.get("description", "")
-        impact = issue.get("impact", "No technical impact specified.")
         file_path = issue.get("file", "")
 
         try:
@@ -103,24 +108,21 @@ class GitHubService:
         except (ValueError, TypeError):
             line = 1
 
-        # Build comment body to trigger GitHub Suggested Changes UI
-        comment_body = f"""🔍 AI Review ({severity})
-
-**Problem:**
-{description}
-
-**Impact:**
-{impact}
-
-**Fix:**
-
-{suggestion if suggestion else "*No automated fix available for this logic.*"}
-"""
-
-        # Safety check: Does the target line actually contain the code we expect?
-        # This prevents the 'wrong line' suggestions seen in PR #62.
-        # Note: In a real production system, we would fetch the file content here.
-        # For now, we will add a secondary validation in main.py using the raw_diff hunks.
+        # Build comment body:
+        # GitHub renders the ```suggestion block as a committable suggestion
+        # ONLY when the block is present in the body. Any text before it is fine.
+        if suggestion:
+            comment_body = (
+                f"{severity_emoji} **[{severity}] {title}**\n\n"
+                f"{description}\n\n"
+                f"{suggestion}"
+            )
+        else:
+            comment_body = (
+                f"{severity_emoji} **[{severity}] {title}**\n\n"
+                f"{description}\n\n"
+                f"*No automated fix available — manual review required.*"
+            )
 
         payload = {
             "body": comment_body,
@@ -148,11 +150,17 @@ class GitHubService:
                         continue
 
                     if response.status_code == 422:
-                        logger.warning(f"Line mapping error for {issue.get('file')}:{line}. Falling back.")
-                        fallback_body = f"🔍 **AI Review Fallback** for `{issue.get('file')}` line `{line}`:\n\n{comment_body}"
+                        logger.warning(f"Line mapping error for {file_path}:{line} — {response.text[:200]}")
+                        fallback_body = (
+                            f"{severity_emoji} **[{severity}] {title}** "
+                            f"(in `{file_path}` near line {line})\n\n"
+                            f"{description}\n\n"
+                            + (suggestion if suggestion else "*No automated fix available.*")
+                        )
                         return await self.post_comment(owner, repo, pr_number, fallback_body)
 
                     response.raise_for_status()
+                    logger.info(f"✅ Inline comment posted: {file_path}:{line}")
                     return True
         except httpx.HTTPError as e:
             logger.error(f"GitHub API Error in post_inline_comment: {str(e)}")

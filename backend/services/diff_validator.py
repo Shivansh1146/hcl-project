@@ -104,7 +104,9 @@ class DiffValidator:
     @staticmethod
     def generate_suggestion(issue: Dict[str, Any], mapping: Dict[str, Dict[int, Tuple[str, str]]]) -> Optional[str]:
         """
-        Generates GitHub suggestion format for an issue.
+        Generates GitHub committable suggestion format for an issue.
+        Always prefers the AI's fix field. Falls back to diff content.
+        Works for both modified lines and pure additions (+lines).
         """
         file_path = issue.get("file")
         line_num = issue.get("line")
@@ -112,14 +114,29 @@ class DiffValidator:
 
         matched_key = DiffValidator._find_matching_file(file_path, mapping)
         if not matched_key or line_num not in mapping[matched_key]:
-            return None
+            # Try nearby lines within tolerance of 3
+            if matched_key:
+                valid_lines = sorted(mapping[matched_key].keys())
+                for vl in valid_lines:
+                    if abs(vl - line_num) <= 3:
+                        line_num = vl
+                        break
+                else:
+                    return None
+            else:
+                return None
 
         old_content, new_content = mapping[matched_key][line_num]
 
-        # Use AI's fix if provided and looks valid, otherwise use diff content
+        # Priority 1: Always use the AI's fix if valid code (not plain English)
         if fix_code and len(fix_code.strip()) > 2:
-            suggestion_code = DiffValidator._clean_code(fix_code)
-        elif new_content and new_content != old_content:
+            cleaned = DiffValidator._clean_code(fix_code)
+            if cleaned and not cleaned.lower().startswith(("use ", "add ", "replace ", "consider ")):
+                suggestion_code = cleaned
+            else:
+                suggestion_code = new_content  # fall back to diff line
+        elif new_content:
+            # For pure additions (old == ""), new_content is the added line
             suggestion_code = new_content
         else:
             return None
@@ -127,7 +144,7 @@ class DiffValidator:
         if not suggestion_code or len(suggestion_code.strip()) < 1:
             return None
 
-        # 🚀 ANTI-HALLUCINATION GUARD
+        # Anti-hallucination guard: skip if old content is a comment or keyword
         if not AntiHallucinationValidator.validate_suggestion(issue, old_content):
             return None
 
