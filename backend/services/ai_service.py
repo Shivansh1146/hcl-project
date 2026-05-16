@@ -205,29 +205,74 @@ SEVERITY GUIDELINES:
         return chunks
 
     def _rule_based_scan(self, diff: str) -> List[Dict[str, Any]]:
-        """Lightweight static scan for critical security patterns (passwords, unsafe calls)."""
-        # Multiline support: Normalize diff by merging lines to catch patterns split across lines
-        normalized_diff = diff.replace("\n+", " ").replace("\n-", " ").replace("\n", " ")
-        
+        """Lightweight static scan for critical security patterns with exact file+line extraction."""
         rules = [
-            (r"(password|api_key|secret|token|private_key)\s*=\s*['\"].*?['\"]", "Hardcoded credential/secret", "HIGH", "security"),
-            (r"verify=False", "SSL verification disabled", "MEDIUM", "security"),
-            (r"eval\(", "Unsafe eval() usage", "HIGH", "security"),
-            (r"os\.chmod\(.*0o777\)", "Insecure file permissions (777)", "HIGH", "security"),
+            (
+                r"eval\(",
+                "Unsafe eval() — Remote Code Execution (RCE) vulnerability. eval() executes arbitrary user-supplied code, allowing attackers to run any system command.",
+                "HIGH", "security",
+                "# SAFE: Use ast.literal_eval() for safe parsing, or json.loads() for JSON data\nresult = ast.literal_eval(user_input)"
+            ),
+            (
+                r"(password|api_key|secret|token|private_key)\s*=\s*['\"](?!\$|os\.|getenv|environ).{4,}['\"]",
+                "Hardcoded credential/secret detected. Secrets in source code are exposed in version control and logs.",
+                "HIGH", "security",
+                "# SAFE: Load from environment variable instead\nvalue = os.getenv('YOUR_SECRET_KEY')"
+            ),
+            (
+                r"verify=False",
+                "SSL certificate verification disabled. This enables man-in-the-middle attacks on HTTPS connections.",
+                "HIGH", "security",
+                "# SAFE: Always verify SSL certificates\nrequests.get(url, verify=True)"
+            ),
+            (
+                r"os\.chmod\(.*0o777\)",
+                "Insecure file permissions (0o777) — world-writable files allow any user to modify them.",
+                "HIGH", "security",
+                "# SAFE: Use restrictive permissions\nos.chmod(path, 0o644)"
+            ),
         ]
         issues = []
-        
-        # 1. Scan normalized diff for multiline patterns
-        for pattern, desc, sev, itype in rules:
-            if re.search(pattern, normalized_diff, re.IGNORECASE):
-                issues.append({
-                    "severity": sev, "type": itype,
-                    "title": "Rule-based Guard",
-                    "description": f"Security risk detected: {desc}",
-                    "fix": "Rotate secrets and use environment variables.",
-                    "file": "Security Scan", "line": 0
-                })
-        
+        current_file = "unknown"
+        current_line = 0
+        diff_line_counter = 0
+
+        lines = diff.splitlines()
+        for line in lines:
+            # Track current file from diff header
+            if line.startswith("+++ b/"):
+                current_file = line[6:].strip()
+                diff_line_counter = 0
+                continue
+            # Track line numbers from hunk headers e.g. @@ -1,3 +5,10 @@
+            hunk_match = re.match(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@", line)
+            if hunk_match:
+                diff_line_counter = int(hunk_match.group(1)) - 1
+                continue
+            # Count added lines
+            if line.startswith("+") and not line.startswith("+++"):
+                diff_line_counter += 1
+                code_line = line[1:]  # Strip leading '+'
+                for pattern, desc, sev, itype, fix in rules:
+                    if re.search(pattern, code_line, re.IGNORECASE):
+                        # Avoid duplicate detections on the same file:line
+                        already_found = any(
+                            i["file"] == current_file and i["line"] == diff_line_counter
+                            for i in issues
+                        )
+                        if not already_found:
+                            issues.append({
+                                "severity": sev,
+                                "type": itype,
+                                "title": f"[Security] {pattern[:30].strip()}",
+                                "description": desc,
+                                "fix": fix,
+                                "file": current_file,
+                                "line": diff_line_counter
+                            })
+            elif not line.startswith("-"):
+                diff_line_counter += 1
+
         return issues
 
     async def analyze_code(self, diff: str, progress_callback=None) -> Dict[str, Any]:
