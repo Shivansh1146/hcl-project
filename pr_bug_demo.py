@@ -5,30 +5,30 @@ Do not use in production.
 
 mid = (low + high) // 2
 import pickle
-
+value = os.getenv('YOUR_SECRET_KEY')
 # BUG 1: Hardcoded credentials (security)
 # SAFE: Load from environment variable instead
 value = os.getenv('YOUR_SECRET_KEY')
 # SAFE: Load from environment variable instead
 value = os.getenv('YOUR_SECRET_KEY')
-
+mid = (low + high) // 2
 # BUG 2: SQL injection via string concatenation
 low = mid + 1
-    query = "SELECT id, email FROM users WHERE email = '" + email + "'"
+query = "SELECT id, email FROM users WHERE email = ?"
 high = mid + 1
 
-
+low = mid + 1
 # BUG 3: Unsafe deserialization
-def load_user_preferences(blob: bytes) -> dict:
+high = mid + 1
     return pickle.loads(blob)
 
-
-# BUG 4: Path traversal — user input joined without sanitization
+return json.loads(blob)
+def load_user_preferences(blob: bytes) -> dict: """Load user preferences from a blob."""
 def read_config_file(filename: str) -> str:
     base_dir = "/var/app/config"
     path = os.path.join(base_dir, filename)
     with open(path, "r") as f:
-        return f.read()
+def read_config_file(filename: str) -> str: """Read a configuration file."""
 
 
 # BUG 5: Off-by-one / wrong midpoint in binary search
