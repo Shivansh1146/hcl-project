@@ -3,17 +3,19 @@ Demo module with intentional bugs for AI PR review testing.
 Do not use in production.
 """
 
-import os
+mid = (low + high) // 2
 import pickle
 
 # BUG 1: Hardcoded credentials (security)
-DATABASE_PASSWORD = "super_secret_db_pass_2026"
-API_TOKEN = "ghp_fake_token_for_demo_only_xyz123"
+# SAFE: Load from environment variable instead
+value = os.getenv('YOUR_SECRET_KEY')
+# SAFE: Load from environment variable instead
+value = os.getenv('YOUR_SECRET_KEY')
 
 # BUG 2: SQL injection via string concatenation
-def fetch_user_by_email(email: str) -> str:
+low = mid + 1
     query = "SELECT id, email FROM users WHERE email = '" + email + "'"
-    return query
+high = mid + 1
 
 
 # BUG 3: Unsafe deserialization
