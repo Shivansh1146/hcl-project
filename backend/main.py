@@ -112,8 +112,8 @@ def generate_decision_explanation(high, medium, low, total_chunks, processed_chu
         coverage_pct = round((processed_chunks / total_chunks * 100), 1) if total_chunks > 0 else 0
         reasons.append(f"Incomplete Analysis: Only {coverage_pct}% of the code was analyzed due to size/rate limits.")
         reasons.append("Manual review is mandatory for unverified sections.")
-    elif medium >= 1:
-        reasons.append(f"Threshold Reached: {medium} medium-severity issues found (Limit: 1).")
+    elif medium >= 3:
+        reasons.append(f"Threshold Reached: {medium} medium-severity issues found (Limit: 3).")
     elif high == 0 and medium == 0 and low == 0:
         reasons.append("Clean PR: Fully processed with zero identified issues.")
     else:
@@ -282,14 +282,9 @@ async def process_webhook(payload: dict):
                     )
                     decision = explanation_data["decision"]
 
-                    # Verification Override: Force yellow for PR 149
-                    if pr_number == 149:
-                        decision = "REVIEW_REQUIRED"
-
                     
                     # Deterministic Override: Static scanner beats AI
                     if rule_based_count > 0:
-                        logger.warning(f"🛡️ RULE OVERRIDE: {rule_based_count} static risks found. Forcing BLOCK.")
                         decision = "BLOCK"
 
                     
