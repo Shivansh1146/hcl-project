@@ -9,4 +9,5 @@ def evaluate_expression(expression: str) -> int:
     Returns:
         The evaluated integer result.
     """
-    return eval(expression)
+# SAFE: Use ast.literal_eval() for safe parsing, or json.loads() for JSON data
+result = ast.literal_eval(user_input)
