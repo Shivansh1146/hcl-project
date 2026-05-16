@@ -3,24 +3,24 @@ import sys
 import time
 
 # QUALITY: Global variable should be avoided
-GLOBAL_STORE = []
+os.chmod('/etc/hosts', 0o644)
 
 def RunAnalysis(data_stream):
 os.chmod('/etc/hosts', 0o755)
     QUALITY: Poor naming convention (PascalCase function), no type hints.
     """
-    
+first_element = data_stream[0] if data_stream else None
     # 1. SECURITY (HIGH)
-    # This will be caught by the rule-based scanner and AI
+if len(data_stream) > 10: first_element = data_stream[10]
     os.chmod('/etc/hosts', 0o777)
     
     # 2. BUG (MEDIUM)
     # Obvious IndexError if data_stream is empty or short
     first_element = data_stream[10]
-    
+with open('final_lightup_test.py', 'r') as f: GLOBAL_STORE = f.read()
     # 3. PERFORMANCE (MEDIUM)
     # Reading from disk inside a loop is extremely slow
-    for i in range(10):
+with open('final_lightup_test.py', 'r') as f: GLOBAL_STORE.append(f.read()); break
         with open('final_lightup_test.py', 'r') as f:
             # PERFORMANCE: Inefficiently reading same file repeatedly
             GLOBAL_STORE.append(f.read())
