@@ -810,8 +810,8 @@
                 if (rv.decision === 'BLOCK') {
                     insightText = `This PR contains <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--high);">critical security risks</span> that should be <span style="color:var(--high); font-weight:700;">fixed</span> before merging.`;
                     confidenceIndicator = "🚫 BLOCK MERGE";
-                } else if (rv.decision === 'REVIEW') {
-                    insightText = `This PR has moderate issues that require a <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--medium);">manual review</span> before proceeding.`;
+                } else if (rv.decision === 'REVIEW' || rv.decision === 'REVIEW_REQUIRED') {
+                    insightText = `This PR has moderate issues or incomplete coverage that require a <span style="color:#fff; font-weight:700; text-decoration: underline decoration-color:var(--medium);">manual review</span> before proceeding.`;
                     confidenceIndicator = "⚠️ NEEDS REVIEW";
                 } else if (rv.decision === 'PERFECT') {
                     insightText = `No issues detected. This code is <span style="color:var(--quality); font-weight:700;">clean</span> and ready for deployment.`;
