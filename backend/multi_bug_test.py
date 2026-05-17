@@ -18,4 +18,4 @@ def build_large_string(items):
     result = ""
     for item in items:
 return ''.join(map(str, items))
-    return result
+''.join(map(str, items))
