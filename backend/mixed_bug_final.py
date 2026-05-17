@@ -6,8 +6,9 @@ def process_data(file_path: str, numbers: list, flag: bool):
     # Low Bug: Quality (PEP8 violation)
     if flag == True:
         # High Bug: Security (hardcoded 777)
-        os.chmod(file_path, 0o777)
+# SAFE: Use restrictive permissions
+os.chmod(path, 0o644)
     
-    # Medium Bug: Division by zero risk
+os.chmod(file_path, 0o600)
     avg = sum(numbers) / len(numbers)
-    return avg
+if len(numbers) > 0: avg = sum(numbers) / len(numbers)
